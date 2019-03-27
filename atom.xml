@@ -5,9 +5,9 @@
   <subtitle>不定期和大家分享一些IT和设计相关的知识经验吧～</subtitle>
   <link href="/atom.xml" rel="self"/>
   
-  <link href="blog.fsociety.cn/"/>
+  <link href="/"/>
   <updated>2019-03-27T03:41:25.588Z</updated>
-  <id>blog.fsociety.cn/</id>
+  <id>/</id>
   
   <author>
     <name>沈捷译</name>
@@ -18,8 +18,8 @@
   
   <entry>
     <title>Hello World</title>
-    <link href="blog.fsociety.cn/post/hello-world/"/>
-    <id>blog.fsociety.cn/post/hello-world/</id>
+    <link href="/post/hello-world/"/>
+    <id>/post/hello-world/</id>
     <published>2019-03-27T03:41:25.587Z</published>
     <updated>2019-03-27T03:41:25.588Z</updated>
     
