@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="/"/>
-  <updated>2019-03-27T03:41:25.588Z</updated>
+  <updated>2019-03-28T10:39:14.034Z</updated>
   <id>/</id>
   
   <author>
@@ -17,11 +17,11 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
-    <title>Hello World</title>
-    <link href="/post/hello-world/"/>
-    <id>/post/hello-world/</id>
-    <published>2019-03-27T03:41:25.587Z</published>
-    <updated>2019-03-27T03:41:25.588Z</updated>
+    <title>mysql性能调优</title>
+    <link href="/post/mysql%E6%80%A7%E8%83%BD%E8%B0%83%E4%BC%98/"/>
+    <id>/post/mysql性能调优/</id>
+    <published>2017-06-28T05:19:13.000Z</published>
+    <updated>2019-03-28T10:39:14.034Z</updated>
     
     <summary type="html">
     
@@ -29,12 +29,106 @@
       
         
         
-          &lt;html&gt;&lt;head&gt;&lt;/head&gt;&lt;body&gt;&lt;p&gt;Welcome to &lt;a href=&quot;https://hexo.io/&quot; rel=&quot;external nofollow noopener noreferrer&quot; target=&quot;_blank&quot;&gt;Hexo&lt;/a&gt;!
+          &lt;html&gt;&lt;head&gt;&lt;/head&gt;&lt;body&gt;&lt;ul&gt;&lt;li&gt;&lt;p&gt;适当地使用索引，索引可以优化查询效率，但是过多的话影响修改效率。&lt;/p&gt;&lt;/li&gt;&lt;li&gt;&lt;p&gt;使用复合索引，优先级从左到右。&lt;/p&gt;&lt;/li&gt;&lt;li&gt;&lt;p&gt;坚决不要涉及到
         
       
     
     </summary>
     
+      <category term="mysql" scheme="/categories/mysql/"/>
+    
+    
+      <category term="mysql" scheme="/tags/mysql/"/>
+    
+      <category term="性能" scheme="/tags/%E6%80%A7%E8%83%BD/"/>
+    
+      <category term="调优" scheme="/tags/%E8%B0%83%E4%BC%98/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>mysql高可用架构设计</title>
+    <link href="/post/mysql%E9%AB%98%E5%8F%AF%E7%94%A8%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/"/>
+    <id>/post/mysql高可用架构设计/</id>
+    <published>2017-05-03T07:18:59.000Z</published>
+    <updated>2019-03-28T07:25:44.131Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;html&gt;&lt;head&gt;&lt;/head&gt;&lt;body&gt;&lt;/body&gt;&lt;/html&gt;
+        
+      
+    
+    </summary>
+    
+      <category term="mysql" scheme="/categories/mysql/"/>
+    
+    
+      <category term="mysql" scheme="/tags/mysql/"/>
+    
+      <category term="高可用" scheme="/tags/%E9%AB%98%E5%8F%AF%E7%94%A8/"/>
+    
+      <category term="架构" scheme="/tags/%E6%9E%B6%E6%9E%84/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>那些年碰到的神级sql</title>
+    <link href="/post/%E9%82%A3%E4%BA%9B%E5%B9%B4%E7%A2%B0%E5%88%B0%E7%9A%84%E7%A5%9E%E7%BA%A7sql/"/>
+    <id>/post/那些年碰到的神级sql/</id>
+    <published>2017-04-01T07:19:45.000Z</published>
+    <updated>2019-03-28T07:55:33.543Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;html&gt;&lt;head&gt;&lt;/head&gt;&lt;body&gt;&lt;h2 id=&quot;计算两日期之间的工作日&quot;&gt;&lt;a href=&quot;#计算两日期之间的工作日&quot; class=&quot;headerlink&quot; title=&quot;计算两日期之间的工作日&quot;&gt;&lt;/a&gt;计算两日期之间的工作日&lt;/h2&gt;&lt;figure
+        
+      
+    
+    </summary>
+    
+      <category term="mysql" scheme="/categories/mysql/"/>
+    
+    
+      <category term="mysql" scheme="/tags/mysql/"/>
+    
+      <category term="神级" scheme="/tags/%E7%A5%9E%E7%BA%A7/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>mysql查漏补缺</title>
+    <link href="/post/mysql%E6%9F%A5%E6%BC%8F%E8%A1%A5%E7%BC%BA/"/>
+    <id>/post/mysql查漏补缺/</id>
+    <published>2016-03-28T06:25:06.000Z</published>
+    <updated>2019-03-28T10:59:52.805Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;html&gt;&lt;head&gt;&lt;/head&gt;&lt;body&gt;&lt;h2 id=&quot;版本&quot;&gt;&lt;a href=&quot;#版本&quot; class=&quot;headerlink&quot; title=&quot;版本&quot;&gt;&lt;/a&gt;版本&lt;/h2&gt;&lt;ul&gt;&lt;li&gt;&lt;strong&gt;mysql&lt;/strong&gt; 建议
+        
+      
+    
+    </summary>
+    
+      <category term="mysql" scheme="/categories/mysql/"/>
+    
+    
+      <category term="mysql" scheme="/tags/mysql/"/>
+    
+      <category term="查漏补缺" scheme="/tags/%E6%9F%A5%E6%BC%8F%E8%A1%A5%E7%BC%BA/"/>
     
   </entry>
   

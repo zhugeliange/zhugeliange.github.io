@@ -1,8 +1,53 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title><![CDATA[Hello World]]></title>
-    <url>%2Fpost%2Fhello-world%2F</url>
-    <content type="text"><![CDATA[Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub.Quick StartCreate a new post1$ hexo new "My New Post"More info: WritingRun server1$ hexo serverMore info: ServerGenerate static files1$ hexo generateMore info: GeneratingDeploy to remote sites1$ hexo deployMore info: Deployment]]></content>
+    <title><![CDATA[mysql性能调优]]></title>
+    <url>%2Fpost%2Fmysql%E6%80%A7%E8%83%BD%E8%B0%83%E4%BC%98%2F</url>
+    <content type="text"><![CDATA[适当地使用索引，索引可以优化查询效率，但是过多的话影响修改效率。使用复合索引，优先级从左到右。坚决不要涉及到 NULL 值，因为 NULL 值不会走索引。MySQL 的一条查询只能使用一个索引，例如：当 WHERE 条件使用索引时，后面 ORDER BY 的索引将不会使用。尽量避免模糊查询，因为 %value% 不会走索引，但是 value% 可以用索引。实在需要 %value 这种形式可以在使用符合索引构成覆盖索引，性能至少会比全表扫描好。或者根据需求拆成多次查询。不要使用 非操作， 诸如 NOT， , != 这些操作是不会走索引的。不要在 WHERE子句 中的 = 左边进行任何操作，诸如 WHERE YEAR(birthday) < 2017 这样的操作是不会走索引的。多个条件时慎用 OR ， 当一个条件有索引而另一个没有时，就不会走索引了，可以分别查询然后用 UNION 将结果集连接起来。用 EXISTS 代替 IN，前者效率比较高。字段类型越简单查询效率越高，例如：主键是 int 类型就比 char 类型快很多。nvarchar 相比 varchar 可以存储 unicode 字符，但是也因此存储容量少了一半，同理 nchar 对比 char。nvarchar/varchar 相比 nchar/char 字符是不固定长度的，因此从占用空间上来考虑会比较高效，但是正因为 nchar/char 是固定长度的所以索引效率会比较高，这个得根据实际情况来考虑平衡。绝对不要用 * ，除非真的要查全部数据，否则每条 SQL 都应该只查询需要的数据，不应该有任何的多余字段。尽量使用 表变量 来代替 临时表。如果 表变量 包含大量数据，请注意索引非常有限（只有主键索引），且 mysql 中只有 临时表 没有 表变量。避免频繁创建和删除 临时表，以减少系统表资源的消耗。临时表 并不是不可使用，适当地使用它们可以使某些例程更有效，例如：当需要重复引用大型表或常用表中的某个数据集时。但是，对于一次性事件， 最好使用导出表。在新建 临时表 时，如果一次性插入数据量很大，那么可以使用 SELECT INTO 代替 CREATE TABLE，避免造成大量 log ，以提高速度；如果数据量不大，为了缓和系统表的资源，应先 CREATE TABLE，然后 INSERT。如果使用到了 临时表 ，在存储过程的最后务必将所有的 临时表 显式删除，先 TRUNCATE TABLE ，然后 DROP TABLE ，这样可以避免系统表的较长时间锁定。尽量避免大事务操作，提高系统并发能力。拆分大的 DELETE 或 INSERT 语句为小的语句，批量提交 SQL 语句。因为删除和更新操作会锁表，当数据量过大耗时太久时，很可能会造成服务的崩溃。用 JOIN 代替 子查询。用 UNION 代替 临时表。使用 外键 来保证数据的同步。数据库的解析器按照从右到左的顺序处理 FROM 子句中的表名， FROM 子句中写在最后的表将被最先处理，在 FROM 子句中包含多个表的情况下,你必须选择记录条数最少的表放在最后：如果三个表是完全无关系的话，将记录和列名最少的表，写在最后，然后依次类推，如果三个表是有关系的话，将引用最多的表，放在最后，然后依次类推。数据库采用自右而左的顺序解析 WHERE 子句，根据这个原理，过滤掉大量数据的条件应该放在最右边，表之间的连接应该放在最左边。用 WHERE 子句替换 HAVING 子句，因为 WHERE 先执行，HAVING 后执行。使用 >= 代替 > ，例如：WHERE a > 10 改成 WHERE a > 10.0000001。删除全表时，用 TRUNCATE 而不用 DELETE。尽量多使用 COMMIT，只要有可能就对程序中每个 DELETE，INSERT，UPDATE 使用 COMMIT，这样系统会因为 COMMIT 所释放的资源而大大提高效率。有条件的使用 UNION ALL 代替 UNION 提高效率。这两者的唯一区别就是后者会去除重复的值。当连接多个表时，对表使用别名，子查询也是如此，因为这样可以加快数据库引擎查找表的时间。最高效的删除重复记录方法例子： DELETE FROM table1 a WHERE a.field > (SELECT MIN(b.field) FROM table2 b WHERE b.id = a.id);尽量少用 联合查询JOIN， 子查询， 触发器， 事务 这些相对复杂的操作，数据库设计时尽量做到能用最简单的语句来完成查询。]]></content>
+      <categories>
+        <category>mysql</category>
+      </categories>
+      <tags>
+        <tag>mysql</tag>
+        <tag>性能</tag>
+        <tag>调优</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[mysql高可用架构设计]]></title>
+    <url>%2Fpost%2Fmysql%E9%AB%98%E5%8F%AF%E7%94%A8%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1%2F</url>
+    <content type="text"><![CDATA[]]></content>
+      <categories>
+        <category>mysql</category>
+      </categories>
+      <tags>
+        <tag>mysql</tag>
+        <tag>高可用</tag>
+        <tag>架构</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[那些年碰到的神级sql]]></title>
+    <url>%2Fpost%2F%E9%82%A3%E4%BA%9B%E5%B9%B4%E7%A2%B0%E5%88%B0%E7%9A%84%E7%A5%9E%E7%BA%A7sql%2F</url>
+    <content type="text"><![CDATA[计算两日期之间的工作日12345678910SELECT 5 * ( DATEDIFF('2016-10-31', '2016-10-01') DIV 7 ) + MID( '0123444401233334012222340111123400001234000123440', 7 * WEEKDAY('2016-10-01') + WEEKDAY('2016-10-31') + 1, 1 ) + 1 WorkingDaysFROM DUAL最高效的删除重复记录的方法1DELETE FROM table1 a WHERE a.field > (SELECT MIN(b.field) FROM table2 b WHERE b.id = a.id);]]></content>
+      <categories>
+        <category>mysql</category>
+      </categories>
+      <tags>
+        <tag>mysql</tag>
+        <tag>神级</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[mysql查漏补缺]]></title>
+    <url>%2Fpost%2Fmysql%E6%9F%A5%E6%BC%8F%E8%A1%A5%E7%BC%BA%2F</url>
+    <content type="text"><![CDATA[版本mysql 建议 5.6 版本以上，最好是 5.7 版本，5.6 版本建议内存不小于 512M，5.7 版本建议内存不小于 1G。安装：Windows 和 Mac 直接下载安装包按照提示操作即可。Linux：Ubuntu，CentOS 这些常见发行版可以通过自带的包管理工具安装即可。1sudo apt-get/yum install mysql-server也可以通过 Docker 的方式进行安装。12docker pull mysql/mysql-serverdocker run mysql或者也可以通过下载安装包安装（太麻烦不推荐，这里可以直接参考 官方文档）。mysql 的备份与还原导出指定数据库到文件1mysqldump -u 用户名 -p 数据库名>文件名.sql由文件导入指定数据库1mysql -u 用户名 -p 数据库名 表结构。所以不能一味的去追求范式建立数据库。临时表MySQL 默认外部临时表MySQL 临时表在我们需要保存一些临时数据时是非常有用的，主要用于对大数据量的表上作一个子集，提高查询效率。临时表只在当前连接可见，当关闭连接时，Mysql 会自动删除表并释放所有空间。 PHP 方式调用 MySQL 时，脚本结束之后临时表就被销毁了，其他情况都是在客户端链接关闭之后才会销毁，当然也可以手动销毁。使用方式和普通表类似，不过还是有一些区别的：创建临时表的时候加上 TEMPORARY。1CREATE TEMPORARY TABLE 表名()使用 SHOW TABLES 命令是看不到创建的临时表的。使用 SHOW CREATE TABLE 可以查看临时表。在 information_schema 中也不存在临时表的信息。退出 mysql 连接之后再登陆进去时，临时表已经被销毁了。1mysql> SELECT * FROM 表名; # ERROR 1146: Table '表名' doesn't exist或者使用 DROP 表名 来手动销毁临时表也一样。12mysql> DROP TABLE 表名;mysql> SELECT * FROM 表名; # ERROR 1146: Table '表名' doesn't exist不同连接的临时表所属各自的作用域，所以不用担心表名重复，如果同一个连接中的临时表和正常表名称相同，则正常表隐藏，临时表将会覆盖掉它。创建临时表不会引发通常的 COMMIT 事务提交。临时表不支持 MySQL 的集群。临时表不能使用 RENAME 来重命名，只能用 ALTER TABLE 表名1 表名2 这种形式。同一个查询语句中同一个临时表只能引用一次，但是可以有多个不同的临时表。同一个用户存储函数中同一个临时表也只能引用一次。会对 MySQL 的主从复制有一定的影响。临时表的引擎类型只能是：MEMORY（HEAP），MYISAM，MERGE，INNODB外部内存表在创建临时表时声明引擎类型为 MEMORY（HEAP） ，则 MySQL 会在内存中创建该临时表，即内存表。1CREATE TEMPORARY TABLE 表名 (...) TYPE = HEAP;内存表的 MEMORY（HEAP） 引擎不支持 BLOB/TEXT 数据类型的字段。临时表的表和数据都存储在内存中，而内存表的表建在磁盘中而数据存储在内存中。内存表和临时表的容量大小都可以在 MySQL 的配置中设置，当内存表的数据使用超出容量时会报错，临时表则会把数据写入到磁盘中，此时需要大量的 I/O 操作，引起性能的下降。临时表一般比较少用，一般只在确定不能用索引的时候或者在存储过程中某些固定数据使用次数非常多的时候使用临时表。通常是在应用程序中动态创建或者由 MySQL 内部根据执行计划需要自己创建。内存表则大多作为 Cache 来使用。如今随着 memcache ，redis 等第三方 Cache 的流行，越来越少选择使用内存表。内部临时表在某些情况下，MySQL 服务器会自动创建内部临时表。使用 EXPLAIN 查看查询语句的执行计划，如果 extra 列显示 “using temporary” 即使用了内部临时表。内部临时表的创建条件：UNION 查询。用到 TEMPTABLE 算法或者是 UNION 查询中的视图。ORDER BY 和 GROUP BY 的子句不一样时。表连接中 ORDER BY 的列不是驱动表中的时候。DISTINCT 查询并且加上 ORDER BY 时。SQL 中用到 SQL_SMALL_RESULT 选项时。FROM 中的子查询。用户设置添加用户12345INSERT INTO user (host, user, password, select_priv, insert_priv, update_priv) VALUES ('localhost', 'guest', PASSWORD('123'), 'Y', 'Y', 'Y');在 5.7 版本中 user 表的 password 字段已换成了 authentication_string。使用 MySQL 自带的 PASSWORD() 函数来对密码进行加密。在 8.0 版本中 PASSWORD() 加密函数已经移除了，可以使用自带的 MD5() 函数代替。执行完之后得执行 FLUSH PRIVILEGES ，这个命令执行后会重新载入授权表。如果你不使用该命令就无法使用新创建的用户来连接 MySQL 服务器，除非重启。可以在创建用户时为用户指定权限，例如上述代码中的 select_priv，insert_priv，update_priv 字段，在对应的权限列中，在插入语句中设置为 ‘Y’ 即可，用户权限列表如下：Select_privInsert_privUpdate_privDelete_privCreate_privDrop_privReload_privShutdown_privProcess_privFile_privGrant_privReferences_privIndex_privAlter_priv增删改查操作类似，都是对 user 表进行 INSERT，DELETE，UPDATE，SELECT 这些操作。查看 MySQL 常用信息查看数据库列表1SHOW DATABASES;查看数据表列表1SHOW TABLES;查看数据表列表1SHOW TABLES;查看数据表属性1SHOW COLUMNS FROM 表名;查看数据表索引信息1SHOW INDEX FROM 表名;查看数据库的性能及统计信息1SHOW TABLE STATUS FROM 数据库名;时间数据类型TIMESTAMP 把客户端插入的时间从当前时区转化为 UTC（世界标准时间）进行存储。查询时，将其又转化为客户端当前时区进行返回。而 DATETIME 不做任何改变，基本上是原样输入和输出。所以对于跨时区的业务，TIMESTAMP 更为合适。TIMESTAMP 比 DATETIME 存储时间范围要小得多。5.6 及之前版本只有 TIMESTAMP 支持默认初始化当前时间及自动更新，且一张表中只支持一个字段，到了 5.7 及之后版本 TIMESTAMP 和 DATETIME 都支持且没有数量限制。LIKE 模糊查询不加任何匹配的话就等价于 =。% 通配符表示任何字符出现任意次，可以是 0 次。_ 通配符表示任何字符出现 1 次。12345678SELECT * FROM user WHERE username LIKE 'test%'; # 以 test 字符串开头的，包括 test 本身，这种方式可以走索引SELECT * FROM user WHERE username LIKE '%test'; # 以 test 字符串结尾的，包括 test 本身SELECT * FROM user WHERE username LIKE '%test%'; # 包含 test 字符串的，包括 test 本身SELECT * FROM user WHERE username LIKE 'test_'; # 以 test 字符串开头的，且后面必须跟着一个字符，这种方式可以走索引SELECT * FROM user WHERE username LIKE '_test'; # 以 test 字符串结尾的，且前面必须跟着一个字符SELECT * FROM user WHERE username LIKE '_test_'; # 包含 test 字符串的，且前面和后面必须分别跟着一个字符SELECT * FROM user WHERE username LIKE '%[a-z]%'; # 包含小写字母的SELECT * FROM user WHERE username LIKE '%[!0-9]%'; # 不包含数字的注意空格也会被识别出来，但是不能匹配 NULL。是否区分大小写这个得看 MySQL 的配置，或者使用 BINARY 操作符来进行二进制的匹配。或者使用 UPPER 操作符全部转化成大写字母，然后配合 CONCAT 操作符将多个字符串连起来。12# 中英文混合且忽略英文大小写的模糊匹配SELECT * FROM username WHERE UPPER(username) LIKE BINARY CONCAT('%',UPPER(‘a中文b’)，‘%’);当]]></content>
+      <categories>
+        <category>mysql</category>
+      </categories>
+      <tags>
+        <tag>mysql</tag>
+        <tag>查漏补缺</tag>
+      </tags>
   </entry>
 </search>
