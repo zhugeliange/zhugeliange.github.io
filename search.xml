@@ -1,9 +1,155 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[mysql模糊查询]]></title>
+    <url>%2Fpost%2Fmysql%E6%A8%A1%E7%B3%8A%E6%9F%A5%E8%AF%A2%2F</url>
+    <content type="text"><![CDATA[不加任何匹配的话就等价于 =。% 通配符表示任何字符出现任意次，可以是 0 次。_ 通配符表示任何字符出现 1 次。12345678SELECT * FROM user WHERE username LIKE 'test%'; # 以 test 字符串开头的，包括 test 本身，这种方式可以走索引SELECT * FROM user WHERE username LIKE '%test'; # 以 test 字符串结尾的，包括 test 本身SELECT * FROM user WHERE username LIKE '%test%'; # 包含 test 字符串的，包括 test 本身SELECT * FROM user WHERE username LIKE 'test_'; # 以 test 字符串开头的，且后面必须跟着一个字符，这种方式可以走索引SELECT * FROM user WHERE username LIKE '_test'; # 以 test 字符串结尾的，且前面必须跟着一个字符SELECT * FROM user WHERE username LIKE '_test_'; # 包含 test 字符串的，且前面和后面必须分别跟着一个字符SELECT * FROM user WHERE username LIKE '%[a-z]%'; # 包含小写字母的SELECT * FROM user WHERE username LIKE '%[!0-9]%'; # 不包含数字的注意空格也会被识别出来，但是不能匹配 NULL。是否区分大小写这个得看 MySQL 的配置，或者使用 BINARY 操作符来进行二进制的匹配。或者使用 UPPER 操作符全部转化成大写字母，然后配合 CONCAT 操作符将多个字符串连起来。12# 中英文混合且忽略英文大小写的模糊匹配SELECT * FROM username WHERE UPPER(username) LIKE BINARY CONCAT('%',UPPER(‘a中文b’)，‘%’);]]></content>
+      <categories>
+        <category>mysql</category>
+      </categories>
+      <tags>
+        <tag>mysql</tag>
+        <tag>like</tag>
+        <tag>模糊查询</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[mysql的时间日期类型]]></title>
+    <url>%2Fpost%2Fmysql%E7%9A%84%E6%97%B6%E9%97%B4%E6%97%A5%E6%9C%9F%E7%B1%BB%E5%9E%8B%2F</url>
+    <content type="text"><![CDATA[TIMESTAMP 把客户端插入的时间从当前时区转化为 UTC（世界标准时间）进行存储。查询时，将其又转化为客户端当前时区进行返回。而 DATETIME 不做任何改变，基本上是原样输入和输出。所以对于跨时区的业务，TIMESTAMP 更为合适。TIMESTAMP 比 DATETIME 存储时间范围要小得多。5.6 及之前版本只有 TIMESTAMP 支持默认初始化当前时间及自动更新，且一张表中只支持一个字段，到了 5.7 及之后版本 TIMESTAMP 和 DATETIME 都支持且没有数量限制。]]></content>
+      <categories>
+        <category>mysql</category>
+      </categories>
+      <tags>
+        <tag>mysql</tag>
+        <tag>时间</tag>
+        <tag>日期</tag>
+        <tag>类型</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[mysql的null值]]></title>
+    <url>%2Fpost%2Fmysql%E7%9A%84null%E5%80%BC%2F</url>
+    <content type="text"><![CDATA[IS NULL 判断当前值为 NULL 时返回 true。IS NOT NULL 判断当前值不为 NULL 时返回 true。不能用 = 或者 != 来判断 NULL 值，得用 ，当比较的的两个值为 NULL 时返回 true。NULL 值与任何其它值的比较（即使是 NULL）永远返回 false，即 NULL = NULL 返回 false。IFNULL 函数1IFNULL(expr1,expr2)如果 expr1 不是 NULL，IFNULL() 返回 expr1，否则它返回 expr2。IFNULL() 返回一个数字或字符串值，取决于它被使用的上下文环境。1IFNULL(age,0)如果 age 字段为 NULL 值，则返回 0。IF 函数1IF(expr1,expr2,expr3)如果 expr1 是 TRUE(expr10 且 expr1NULL)，那么 IF() 返回 expr2，否则它返回 expr3。IF() 返回一个数字或字符串值，取决于它被使用的上下文。1IF(1>2,'yes','no') # 返回 noexpr1 作为整数值被计算，它意味着如果你正在测试浮点或字符串值，你应该使用一个比较操作来做。12IF(0.1,'yes','no') # 返回 no，因为 0.1 被强制转化成整数 0IF(0.10,'yes','no') # 返回 yes]]></content>
+      <categories>
+        <category>mysql</category>
+      </categories>
+      <tags>
+        <tag>mysql</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[查看mysql常用信息]]></title>
+    <url>%2Fpost%2F%E6%9F%A5%E7%9C%8Bmysql%E5%B8%B8%E7%94%A8%E4%BF%A1%E6%81%AF%2F</url>
+    <content type="text"><![CDATA[查看数据库列表1SHOW DATABASES;查看数据表列表1SHOW TABLES;查看数据表列表1SHOW TABLES;查看数据表属性1SHOW COLUMNS FROM 表名;查看数据表索引信息1SHOW INDEX FROM 表名;查看数据库的性能及统计信息1SHOW TABLE STATUS FROM 数据库名;]]></content>
+      <categories>
+        <category>mysql</category>
+      </categories>
+      <tags>
+        <tag>mysql</tag>
+        <tag>常用信息</tag>
+        <tag>查看</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[mysql的备份与还原]]></title>
+    <url>%2Fpost%2Fmysql%E7%9A%84%E5%A4%87%E4%BB%BD%E4%B8%8E%E8%BF%98%E5%8E%9F%2F</url>
+    <content type="text"><![CDATA[导出指定数据库到文件1mysqldump -u 用户名 -p 数据库名>文件名.sql由文件导入指定数据库1mysql -u 用户名 -p 数据库名]]></content>
+      <categories>
+        <category>mysql</category>
+      </categories>
+      <tags>
+        <tag>mysql</tag>
+        <tag>备份</tag>
+        <tag>还原</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[mysql的case-when-then-else-end]]></title>
+    <url>%2Fpost%2Fmysql%E7%9A%84case-when-then-else-end%2F</url>
+    <content type="text"><![CDATA[两种基本语法简单函数：1CASE 字段名 WHEN 值1 THEN 结果1 WHEN 值2 THEN 结果2 ELSE 其他结果 END简单函数的条件只支持 字段名 = 值 的情况，且始终是同一个字段，对于多个字段或者 IN，!=，这些条件得用下面的搜索函数。搜索函数1CASE WHEN 条件1 THEN 结果1 WHEN 条件2 THEN 结果2 ELSE 其他结果 END搜索函数可以写判断，并且搜索函数只会返回第一个符合条件的值，其他 CASE 被忽略。]]></content>
+      <categories>
+        <category>mysql</category>
+      </categories>
+      <tags>
+        <tag>mysql</tag>
+        <tag>case</tag>
+        <tag>when</tag>
+        <tag>then</tag>
+        <tag>else</tag>
+        <tag>end</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[mysql的执行顺序]]></title>
+    <url>%2Fpost%2Fmysql%E7%9A%84%E6%89%A7%E8%A1%8C%E9%A1%BA%E5%BA%8F%2F</url>
+    <content type="text"><![CDATA[12345678910111213SELECT DISTINCT 字段1,字段2 FROM 表1 JOIN 表2 ON 表1.字段3=表2.字段4WHERE 条件1,条件2GROUP BY 字段5HAVING 条件3,条件4ORDER BY 字段6LIMIT 开始位置,限制长度MySQL 解释器的执行顺序为：FROMONJOINWHEREGROUP BYHAVINGSELECTDISTINCTORDER BYLIMIT]]></content>
+      <categories>
+        <category>mysql</category>
+      </categories>
+      <tags>
+        <tag>mysql</tag>
+        <tag>顺序</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[mysql的with-rollup和coalesce函数配合group-by实现分组之后汇总]]></title>
+    <url>%2Fpost%2Fmysql%E7%9A%84with-rollup%E5%92%8Ccoalesce%E5%87%BD%E6%95%B0%E9%85%8D%E5%90%88group-by%E5%AE%9E%E7%8E%B0%E5%88%86%E7%BB%84%E4%B9%8B%E5%90%8E%E6%B1%87%E6%80%BB%2F</url>
+    <content type="text"><![CDATA[WITH ROLLUP 可以实现在分组统计数据基础上再进行相同的统计（SUM，AVG，COUNT 等）。1SELECT name, SUM(singin) as singin_count FROM employee_tbl GROUP BY name WITH ROLLUP;其中记录 NULL 表示所有人的登录次数。可以使用 COALESCE 来设置一个可以取代 NULL 的名称，语法如下：1select COALESCE(a,b,c);如果 a==NULL，则选择 b。如果 b==NULL，则选择 c。如果 a!=NULL，则选择 a。如果 a，b，c 都为 NULL ，则返回为 NULL（没意义）。所以可以结合起来改造上面语句，用 “总数” 来替换 NULL：1SELECT COALESCE(name, '总数'), SUM(singin) as singin_count FROM employee_tbl GROUP BY name WITH ROLLUP;]]></content>
+      <categories>
+        <category>mysql</category>
+      </categories>
+      <tags>
+        <tag>mysql</tag>
+        <tag>with rollup</tag>
+        <tag>coalesce</tag>
+        <tag>group by</tag>
+        <tag>函数</tag>
+        <tag>分组</tag>
+        <tag>汇总</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[mysql的用户设置]]></title>
+    <url>%2Fpost%2Fmysql%E7%9A%84%E7%94%A8%E6%88%B7%E8%AE%BE%E7%BD%AE%2F</url>
+    <content type="text"><![CDATA[添加用户12345INSERT INTO user (host, user, password, select_priv, insert_priv, update_priv) VALUES ('localhost', 'guest', PASSWORD('123'), 'Y', 'Y', 'Y');在 5.7 版本中 user 表的 password 字段已换成了 authentication_string。使用 MySQL 自带的 PASSWORD() 函数来对密码进行加密。在 8.0 版本中 PASSWORD() 加密函数已经移除了，可以使用自带的 MD5() 函数代替。执行完之后得执行 FLUSH PRIVILEGES ，这个命令执行后会重新载入授权表。如果你不使用该命令就无法使用新创建的用户来连接 MySQL 服务器，除非重启。可以在创建用户时为用户指定权限，例如上述代码中的 select_priv，insert_priv，update_priv 字段，在对应的权限列中，在插入语句中设置为 ‘Y’ 即可，用户权限列表如下：Select_privInsert_privUpdate_privDelete_privCreate_privDrop_privReload_privShutdown_privProcess_privFile_privGrant_privReferences_privIndex_privAlter_priv增删改查操作类似，都是对 user 表进行 INSERT，DELETE，UPDATE，SELECT 这些操作。]]></content>
+      <categories>
+        <category>mysql</category>
+      </categories>
+      <tags>
+        <tag>mysql</tag>
+        <tag>用户</tag>
+        <tag>设置</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[mysql的外键]]></title>
+    <url>%2Fpost%2Fmysql%E7%9A%84%E5%A4%96%E9%94%AE%2F</url>
+    <content type="text"><![CDATA[简介MySQL 通过外键约束来保证表与表之间的数据的完整性和准确性。一个表中的 FOREIGN KEY 指向另一个表中的 UNIQUE KEY(唯一约束的键，不一定是 PRIMARY KEY)。FOREIGN KEY 约束用于预防破坏表之间连接的行为。FOREIGN KEY 约束也能防止非法数据插入外键列，因为它必须是它指向的那个表中的值之一。使用条件两个表必须是 InnoDB 表，MyISAM 表暂时不支持外键。主表的字段必须是唯一键，不一定要是主键，只要具有唯一性约束就行了。关联的两个字段必须是 InnoDB 下的相似类型，即 INT 和 TINYINT 可以，INT 和 CHAR 就不行。外键的字段必须建立索引，新版本已经可以自动创建索引了，不用手动创建了。避免使用复合键，也就是说从表能够同一时候引用多个主表的字段作为一个外键，但是一般不推荐这样的做法。创建123456789CREATE TABLE 表1( 字段1 int NOT NULL, 字段2 int, CONSTRAINT symbol PRIMARY KEY (字段1), FOREIGN KEY (字段2) REFERENCES 表2(字段1) ON 触发事件1 具体操作1 ON 触发事件2 具体操作2)表1的字段2是外键，与表2的字段1（唯一键，一般是主键）相关联。symbol 可以为选填，手动指定的话必须保证唯一性，不写就由 MySQL 自动生成，建议自动生成触发事件有如下值：DELETE 删除时UPDATE 更新时具体操作有如下值：RESTRICT 限制外表中的外键改动CASCADE 跟随外键改动SET NULL 设空值SET DEFAULT 设默认值NO ACTION 无动作，默认触发事件和具体操作为可选项，但必须成对出现，且可有多个。修改12345ALTER TABLE 表1ADD CONSTRAINT symbol FOREIGN KEY (字段2)REFERENCES 表2(字段1)ON 触发事件1 具体操作1ON 触发事件2 具体操作2删除12ALTER TABLE 表1DROP FOREIGN KEY 字段2]]></content>
+      <categories>
+        <category>mysql</category>
+      </categories>
+      <tags>
+        <tag>mysql</tag>
+        <tag>外键</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[mysql的三范式]]></title>
+    <url>%2Fpost%2Fmysql%E7%9A%84%E4%B8%89%E8%8C%83%E5%BC%8F%2F</url>
+    <content type="text"><![CDATA[基本概念第一范式： 当关系模式 R 的所有属性都不能在分解为更基本的数据单位时，称 R 是满足第一范式的，简记为 1NF 。满足第一范式是关系模式规范化的最低要求，否则，将有很多基本操作在这样的关系模式中实现不了。简而言之：字段不可分 。第二范式： 如果关系模式 R 满足第一范式，并且 R 的所有非主属性都完全依赖于 R 的每一个候选关键属性，称 R 满足第二范式，简记为 2NF。简而言之：有主键，非主键字段完全依赖主键 。第三范式： 假设 R 是一个满足第一范式条件的关系模式，X 是 R 的任意属性集，如果 X 非传递依赖于 R 的任意一个候选关键字，称 R 满足第三范式，简记为 3NF。简而言之：非主键字段之间不能相互依赖 。第一范式每一列属性都是不可再分的属性值，确保每一列的原子性。两列的属性相近或相似或一样，尽量合并属性一样的列，确保不产生冗余数据。第二范式每一行的数据只能与其中一列相关，即一行数据只做一件事。只要数据列中出现数据重复，就要把表拆分开来。第三范式数据不能存在传递关系，即每个属性都跟主键有直接关系而不是间接关系。设计原则三大范式只是一般设计数据库的基本理念，可以建立冗余较小、结构合理的数据库。如果有特殊情况，当然要特殊对待，数据库设计最重要的是看需求跟性能，需求 > 性能 > 表结构。所以不能一味的去追求范式建立数据库。]]></content>
+      <categories>
+        <category>mysql</category>
+      </categories>
+      <tags>
+        <tag>mysql</tag>
+        <tag>三范式</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[mysql性能调优]]></title>
     <url>%2Fpost%2Fmysql%E6%80%A7%E8%83%BD%E8%B0%83%E4%BC%98%2F</url>
-    <content type="text"><![CDATA[适当地使用索引，索引可以优化查询效率，但是过多的话影响修改效率。使用复合索引，优先级从左到右。坚决不要涉及到 NULL 值，因为 NULL 值不会走索引。MySQL 的一条查询只能使用一个索引，例如：当 WHERE 条件使用索引时，后面 ORDER BY 的索引将不会使用。尽量避免模糊查询，因为 %value% 不会走索引，但是 value% 可以用索引。实在需要 %value 这种形式可以在使用符合索引构成覆盖索引，性能至少会比全表扫描好。或者根据需求拆成多次查询。不要使用 非操作， 诸如 NOT， , != 这些操作是不会走索引的。不要在 WHERE子句 中的 = 左边进行任何操作，诸如 WHERE YEAR(birthday) < 2017 这样的操作是不会走索引的。多个条件时慎用 OR ， 当一个条件有索引而另一个没有时，就不会走索引了，可以分别查询然后用 UNION 将结果集连接起来。用 EXISTS 代替 IN，前者效率比较高。字段类型越简单查询效率越高，例如：主键是 int 类型就比 char 类型快很多。nvarchar 相比 varchar 可以存储 unicode 字符，但是也因此存储容量少了一半，同理 nchar 对比 char。nvarchar/varchar 相比 nchar/char 字符是不固定长度的，因此从占用空间上来考虑会比较高效，但是正因为 nchar/char 是固定长度的所以索引效率会比较高，这个得根据实际情况来考虑平衡。绝对不要用 * ，除非真的要查全部数据，否则每条 SQL 都应该只查询需要的数据，不应该有任何的多余字段。尽量使用 表变量 来代替 临时表。如果 表变量 包含大量数据，请注意索引非常有限（只有主键索引），且 mysql 中只有 临时表 没有 表变量。避免频繁创建和删除 临时表，以减少系统表资源的消耗。临时表 并不是不可使用，适当地使用它们可以使某些例程更有效，例如：当需要重复引用大型表或常用表中的某个数据集时。但是，对于一次性事件， 最好使用导出表。在新建 临时表 时，如果一次性插入数据量很大，那么可以使用 SELECT INTO 代替 CREATE TABLE，避免造成大量 log ，以提高速度；如果数据量不大，为了缓和系统表的资源，应先 CREATE TABLE，然后 INSERT。如果使用到了 临时表 ，在存储过程的最后务必将所有的 临时表 显式删除，先 TRUNCATE TABLE ，然后 DROP TABLE ，这样可以避免系统表的较长时间锁定。尽量避免大事务操作，提高系统并发能力。拆分大的 DELETE 或 INSERT 语句为小的语句，批量提交 SQL 语句。因为删除和更新操作会锁表，当数据量过大耗时太久时，很可能会造成服务的崩溃。用 JOIN 代替 子查询。用 UNION 代替 临时表。使用 外键 来保证数据的同步。数据库的解析器按照从右到左的顺序处理 FROM 子句中的表名， FROM 子句中写在最后的表将被最先处理，在 FROM 子句中包含多个表的情况下,你必须选择记录条数最少的表放在最后：如果三个表是完全无关系的话，将记录和列名最少的表，写在最后，然后依次类推，如果三个表是有关系的话，将引用最多的表，放在最后，然后依次类推。数据库采用自右而左的顺序解析 WHERE 子句，根据这个原理，过滤掉大量数据的条件应该放在最右边，表之间的连接应该放在最左边。用 WHERE 子句替换 HAVING 子句，因为 WHERE 先执行，HAVING 后执行。使用 >= 代替 > ，例如：WHERE a > 10 改成 WHERE a > 10.0000001。删除全表时，用 TRUNCATE 而不用 DELETE。尽量多使用 COMMIT，只要有可能就对程序中每个 DELETE，INSERT，UPDATE 使用 COMMIT，这样系统会因为 COMMIT 所释放的资源而大大提高效率。有条件的使用 UNION ALL 代替 UNION 提高效率。这两者的唯一区别就是后者会去除重复的值。当连接多个表时，对表使用别名，子查询也是如此，因为这样可以加快数据库引擎查找表的时间。最高效的删除重复记录方法例子： DELETE FROM table1 a WHERE a.field > (SELECT MIN(b.field) FROM table2 b WHERE b.id = a.id);尽量少用 联合查询JOIN， 子查询， 触发器， 事务 这些相对复杂的操作，数据库设计时尽量做到能用最简单的语句来完成查询。]]></content>
+    <content type="text"><![CDATA[适当地使用索引，索引可以优化查询效率，但是过多的话影响修改效率。使用复合索引，优先级从左到右。坚决不要涉及到 NULL 值，因为 NULL 值不会走索引。MySQL 的一条查询只能使用一个索引，例如：当 WHERE 条件使用索引时，后面 ORDER BY 的索引将不会使用。尽量避免模糊查询，因为 %VALUE% 不会走索引，但是 VALUE% 可以用索引。实在需要 %VALUE 这种形式可以在使用符合索引构成覆盖索引，性能至少会比全表扫描好。或者根据需求拆成多次查询。不要使用 非操作， 诸如 NOT， , != 这些操作是不会走索引的。不要在 WHERE子句 中的 = 左边进行任何操作，诸如 WHERE YEAR(birthday) < 2017 这样的操作是不会走索引的。多个条件时慎用 OR ， 当一个条件有索引而另一个没有时，就不会走索引了，可以分别查询然后用 UNION 将结果集连接起来。用 EXISTS 代替 IN，前者效率比较高。字段类型越简单查询效率越高，例如：主键是 INT 类型就比 CHAR 类型快很多。NVARCHAR 相比 VARCHAR 可以存储 UNICODE 字符，但是也因此存储容量少了一半，同理 NCHAR 对比 CHAR。NVARCHAR/VARCHAR 相比 NCHAR/CHAR 字符是不固定长度的，因此从占用空间上来考虑会比较高效，但是正因为 NCHAR/CHAR 是固定长度的所以索引效率会比较高，这个得根据实际情况来考虑平衡。绝对不要用 * ，除非真的要查全部数据，否则每条 SQL 都应该只查询需要的数据，不应该有任何的多余字段。避免频繁创建和删除 临时表，以减少系统表资源的消耗。临时表 并不是不可使用，适当地使用它们可以使某些例程更有效，例如：当需要重复引用大型表或常用表中的某个数据集时。但是，对于一次性事件， 最好使用导出表。在新建 临时表 时，如果一次性插入数据量很大，那么可以使用 SELECT INTO 代替 CREATE TABLE，避免造成大量 LOG ，以提高速度；如果数据量不大，为了缓和系统表的资源，应先 CREATE TABLE，然后 INSERT。如果使用到了 临时表 ，在存储过程的最后务必将所有的 临时表 显式删除，先 TRUNCATE TABLE ，然后 DROP TABLE ，这样可以避免系统表的较长时间锁定。尽量避免大事务操作，提高系统并发能力。拆分大的 DELETE 或 INSERT 语句为小的语句，批量提交 SQL 语句。因为删除和更新操作会锁表，当数据量过大耗时太久时，很可能会造成服务的崩溃。用 JOIN 代替 子查询。用 UNION 代替 临时表。使用 外键 来保证数据的同步。MySQL 的解析器按照从左往右的顺序处理 FROM 子句中的表名， 写在最前面的表将被最先处理，在 FROM 子句中包含多个表的情况下,你必须选择记录条数最少的表放在最前面：如果多个表是完全无关系的话，将记录和列名最少的表放在最前面然后依次类推，如果表之间是有关系的话，将引用最多的表放在最前面然后依次类推。对于 WHERE 子句，也是按照从左往右的顺序处理，所以过滤掉大量数据的条件应该放在最左边，表之间的连接应该放在最右边。用 WHERE 子句替换 HAVING 子句，因为 WHERE 先执行，HAVING 后执行。使用 >= 代替 > ，例如：WHERE a > 10 改成 WHERE a >= 10.0000001。删除全表时，用 TRUNCATE 比 DELETE 效率更好。DELETE 会一行一行的删除数据，而 TRUNCATE 则会按照原有的表结构重新创建一张新表。但是 TRUNCATE 不会生成 MySQL 的日志，且无法恢复数据。尽量多使用 COMMIT，只要有可能就对程序中每个 DELETE，INSERT，UPDATE 使用 COMMIT，即应该将事务尽量拆分，这样不会因大量占用资源导致锁，系统会因为 COMMIT 所释放的资源而大大提高效率。有条件的使用 UNION ALL 代替 UNION 提高效率。这两者的唯一区别就是后者会去除重复的值。当连接多个表时对表使用别名，子查询也是如此，因为这样可以加快数据库引擎查找表的时间。最高效的删除重复记录方法例子： DELETE FROM table1 a WHERE a.field > (SELECT MIN(b.field) FROM table2 b WHERE b.id = a.id);尽量少用 联合查询， 子查询， 触发器， 事务 这些相对复杂的操作，数据库设计时尽量做到能用最简单的语句来完成查询。]]></content>
       <categories>
         <category>mysql</category>
       </categories>
@@ -11,6 +157,32 @@
         <tag>mysql</tag>
         <tag>性能</tag>
         <tag>调优</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[mysql的存储引擎innodb和myisam之间的比较]]></title>
+    <url>%2Fpost%2Fmysql%E7%9A%84%E5%AD%98%E5%82%A8%E5%BC%95%E6%93%8Einnodb%E5%92%8Cmyisam%E4%B9%8B%E9%97%B4%E7%9A%84%E6%AF%94%E8%BE%83%2F</url>
+    <content type="text"><![CDATA[MyISAM 强调的是性能，其执行数度比 InnoDB 更快，占用空间更小，但是不提供事务支持。InnoDB 提供事务支持事务，外键等高级数据库功能。如果执行大量的 SELECT 操作，MyISAM 是更好的选择。如果执行大量的 INSERT 或 UPDATE，出于性能方面的考虑，应该使用 InnoDB 表。MyISAM 适合查询以及插入为主的应用，InnoDB 适合频繁修改，读写密集以及涉及到安全性较高的应用。清空整个表 DELETE FROM 表1 时，InnoDB 是一行一行的删除，效率非常慢。MyISAM 则会重建表。可以用 TRUNCATE TABLE 表1 来代替。LOAD 操作（导入数据）对 InnoDB 是不起作用的，解决方法是首先把 InnoDB 改成 MyISAM ，导入数据后再改成 InnoDB 表，但是对于使用的额外的 InnoDB 特性（例如外键）的表不适用。对于字段的 AUTO_INCREMENT 特性，MyISAM 比 InnoDB 支持的更好更快。InnoDB 中必须包含只有该字段的索引，但是在 MyISAM 表中可以和其他字段一起建立联合索引。对于 COUNT 操作，因为 MyISAM 会自动将行数另外保存，所以搜索的时候直接取出来就可以了，所以更快。而 InnoDB 得全表扫描一遍来计算一下行数。但是当 SELECT COUNT(*) 语句带有 WHERE 条件时，MyISAM 也会像 InnoDB 一样全表扫描从而影响性能。MyISAM 只提供表锁，而 InnoDB 支持行锁和不加锁读取，但是当 MySQL 不能确定要执行的 SQL 语句要扫描的范围时 InnoDB 同样会锁全表。MySQL 在 5.1 之前默认存储引擎是 MyISAM，之后是 InnoDB。在 5.6 版本之前只有MyISAM 支持 FULLTEXT 类型的索引，之后 InnoDB 也支持了。这可以极大的优化了模糊查询 LIKE 的效率。]]></content>
+      <categories>
+        <category>mysql</category>
+      </categories>
+      <tags>
+        <tag>mysql</tag>
+        <tag>存储引擎</tag>
+        <tag>innodb</tag>
+        <tag>myisam</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[mysql的临时表]]></title>
+    <url>%2Fpost%2Fmysql%E7%9A%84%E4%B8%B4%E6%97%B6%E8%A1%A8%2F</url>
+    <content type="text"><![CDATA[MySQL 默认外部临时表MySQL 临时表在我们需要保存一些临时数据时是非常有用的，主要用于对大数据量的表上作一个子集，提高查询效率。临时表只在当前连接可见，当关闭连接时，Mysql 会自动删除表并释放所有空间。 PHP 方式调用 MySQL 时，脚本结束之后临时表就被销毁了，其他情况都是在客户端链接关闭之后才会销毁，当然也可以手动销毁。使用方式和普通表类似，不过还是有一些区别的：创建临时表的时候加上 TEMPORARY。1CREATE TEMPORARY TABLE 表名()使用 SHOW TABLES 命令是看不到创建的临时表的。使用 SHOW CREATE TABLE 可以查看临时表。在 information_schema 中也不存在临时表的信息。退出 mysql 连接之后再登陆进去时，临时表已经被销毁了。1mysql> SELECT * FROM 表名; # ERROR 1146: Table '表名' doesn't exist或者使用 DROP 表名 来手动销毁临时表也一样。12mysql> DROP TABLE 表名;mysql> SELECT * FROM 表名; # ERROR 1146: Table '表名' doesn't exist不同连接的临时表所属各自的作用域，所以不用担心表名重复，如果同一个连接中的临时表和正常表名称相同，则正常表隐藏，临时表将会覆盖掉它。创建临时表不会引发通常的 COMMIT 事务提交。临时表不支持 MySQL 的集群。临时表不能使用 RENAME 来重命名，只能用 ALTER TABLE 表名1 表名2 这种形式。同一个查询语句中同一个临时表只能引用一次，但是可以有多个不同的临时表。同一个用户存储函数中同一个临时表也只能引用一次。会对 MySQL 的主从复制有一定的影响。临时表的引擎类型只能是：MEMORY（HEAP），MYISAM，MERGE，INNODB外部内存表在创建临时表时声明引擎类型为 MEMORY（HEAP） ，则 MySQL 会在内存中创建该临时表，即内存表。1CREATE TEMPORARY TABLE 表名 (...) TYPE = HEAP;内存表的 MEMORY（HEAP） 引擎不支持 BLOB/TEXT 数据类型的字段。临时表的表和数据都存储在内存中，而内存表的表建在磁盘中而数据存储在内存中。内存表和临时表的容量大小都可以在 MySQL 的配置中设置，当内存表的数据使用超出容量时会报错，临时表则会把数据写入到磁盘中，此时需要大量的 I/O 操作，引起性能的下降。临时表一般比较少用，一般只在确定不能用索引的时候或者在存储过程中某些固定数据使用次数非常多的时候使用临时表。通常是在应用程序中动态创建或者由 MySQL 内部根据执行计划需要自己创建。内存表则大多作为 Cache 来使用。如今随着 memcache ，redis 等第三方 Cache 的流行，越来越少选择使用内存表。内部临时表在某些情况下，MySQL 服务器会自动创建内部临时表。使用 EXPLAIN 查看查询语句的执行计划，如果 extra 列显示 “using temporary” 即使用了内部临时表。内部临时表的创建条件：UNION 查询。用到 TEMPTABLE 算法或者是 UNION 查询中的视图。ORDER BY 和 GROUP BY 的子句不一样时。表连接中 ORDER BY 的列不是驱动表中的时候。DISTINCT 查询并且加上 ORDER BY 时。SQL 中用到 SQL_SMALL_RESULT 选项时。FROM 中的子查询。]]></content>
+      <categories>
+        <category>mysql</category>
+      </categories>
+      <tags>
+        <tag>mysql</tag>
+        <tag>临时表</tag>
       </tags>
   </entry>
   <entry>
@@ -29,25 +201,13 @@
   <entry>
     <title><![CDATA[那些年碰到的神级sql]]></title>
     <url>%2Fpost%2F%E9%82%A3%E4%BA%9B%E5%B9%B4%E7%A2%B0%E5%88%B0%E7%9A%84%E7%A5%9E%E7%BA%A7sql%2F</url>
-    <content type="text"><![CDATA[计算两日期之间的工作日12345678910SELECT 5 * ( DATEDIFF('2016-10-31', '2016-10-01') DIV 7 ) + MID( '0123444401233334012222340111123400001234000123440', 7 * WEEKDAY('2016-10-01') + WEEKDAY('2016-10-31') + 1, 1 ) + 1 WorkingDaysFROM DUAL最高效的删除重复记录的方法1DELETE FROM table1 a WHERE a.field > (SELECT MIN(b.field) FROM table2 b WHERE b.id = a.id);]]></content>
+    <content type="text"><![CDATA[计算两日期之间的工作日12345678910SELECT 5 * ( DATEDIFF('2016-10-31', '2016-10-01') DIV 7 ) + MID( '0123444401233334012222340111123400001234000123440', 7 * WEEKDAY('2016-10-01') + WEEKDAY('2016-10-31') + 1, 1 ) + 1 WorkingDaysFROM DUAL;最高效的删除重复记录的方法1DELETE FROM table1 a WHERE a.field > (SELECT MIN(b.field) FROM table2 b WHERE b.id = a.id);]]></content>
       <categories>
         <category>mysql</category>
       </categories>
       <tags>
         <tag>mysql</tag>
         <tag>神级</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title><![CDATA[mysql查漏补缺]]></title>
-    <url>%2Fpost%2Fmysql%E6%9F%A5%E6%BC%8F%E8%A1%A5%E7%BC%BA%2F</url>
-    <content type="text"><![CDATA[版本mysql 建议 5.6 版本以上，最好是 5.7 版本，5.6 版本建议内存不小于 512M，5.7 版本建议内存不小于 1G。安装：Windows 和 Mac 直接下载安装包按照提示操作即可。Linux：Ubuntu，CentOS 这些常见发行版可以通过自带的包管理工具安装即可。1sudo apt-get/yum install mysql-server也可以通过 Docker 的方式进行安装。12docker pull mysql/mysql-serverdocker run mysql或者也可以通过下载安装包安装（太麻烦不推荐，这里可以直接参考 官方文档）。mysql 的备份与还原导出指定数据库到文件1mysqldump -u 用户名 -p 数据库名>文件名.sql由文件导入指定数据库1mysql -u 用户名 -p 数据库名 表结构。所以不能一味的去追求范式建立数据库。临时表MySQL 默认外部临时表MySQL 临时表在我们需要保存一些临时数据时是非常有用的，主要用于对大数据量的表上作一个子集，提高查询效率。临时表只在当前连接可见，当关闭连接时，Mysql 会自动删除表并释放所有空间。 PHP 方式调用 MySQL 时，脚本结束之后临时表就被销毁了，其他情况都是在客户端链接关闭之后才会销毁，当然也可以手动销毁。使用方式和普通表类似，不过还是有一些区别的：创建临时表的时候加上 TEMPORARY。1CREATE TEMPORARY TABLE 表名()使用 SHOW TABLES 命令是看不到创建的临时表的。使用 SHOW CREATE TABLE 可以查看临时表。在 information_schema 中也不存在临时表的信息。退出 mysql 连接之后再登陆进去时，临时表已经被销毁了。1mysql> SELECT * FROM 表名; # ERROR 1146: Table '表名' doesn't exist或者使用 DROP 表名 来手动销毁临时表也一样。12mysql> DROP TABLE 表名;mysql> SELECT * FROM 表名; # ERROR 1146: Table '表名' doesn't exist不同连接的临时表所属各自的作用域，所以不用担心表名重复，如果同一个连接中的临时表和正常表名称相同，则正常表隐藏，临时表将会覆盖掉它。创建临时表不会引发通常的 COMMIT 事务提交。临时表不支持 MySQL 的集群。临时表不能使用 RENAME 来重命名，只能用 ALTER TABLE 表名1 表名2 这种形式。同一个查询语句中同一个临时表只能引用一次，但是可以有多个不同的临时表。同一个用户存储函数中同一个临时表也只能引用一次。会对 MySQL 的主从复制有一定的影响。临时表的引擎类型只能是：MEMORY（HEAP），MYISAM，MERGE，INNODB外部内存表在创建临时表时声明引擎类型为 MEMORY（HEAP） ，则 MySQL 会在内存中创建该临时表，即内存表。1CREATE TEMPORARY TABLE 表名 (...) TYPE = HEAP;内存表的 MEMORY（HEAP） 引擎不支持 BLOB/TEXT 数据类型的字段。临时表的表和数据都存储在内存中，而内存表的表建在磁盘中而数据存储在内存中。内存表和临时表的容量大小都可以在 MySQL 的配置中设置，当内存表的数据使用超出容量时会报错，临时表则会把数据写入到磁盘中，此时需要大量的 I/O 操作，引起性能的下降。临时表一般比较少用，一般只在确定不能用索引的时候或者在存储过程中某些固定数据使用次数非常多的时候使用临时表。通常是在应用程序中动态创建或者由 MySQL 内部根据执行计划需要自己创建。内存表则大多作为 Cache 来使用。如今随着 memcache ，redis 等第三方 Cache 的流行，越来越少选择使用内存表。内部临时表在某些情况下，MySQL 服务器会自动创建内部临时表。使用 EXPLAIN 查看查询语句的执行计划，如果 extra 列显示 “using temporary” 即使用了内部临时表。内部临时表的创建条件：UNION 查询。用到 TEMPTABLE 算法或者是 UNION 查询中的视图。ORDER BY 和 GROUP BY 的子句不一样时。表连接中 ORDER BY 的列不是驱动表中的时候。DISTINCT 查询并且加上 ORDER BY 时。SQL 中用到 SQL_SMALL_RESULT 选项时。FROM 中的子查询。用户设置添加用户12345INSERT INTO user (host, user, password, select_priv, insert_priv, update_priv) VALUES ('localhost', 'guest', PASSWORD('123'), 'Y', 'Y', 'Y');在 5.7 版本中 user 表的 password 字段已换成了 authentication_string。使用 MySQL 自带的 PASSWORD() 函数来对密码进行加密。在 8.0 版本中 PASSWORD() 加密函数已经移除了，可以使用自带的 MD5() 函数代替。执行完之后得执行 FLUSH PRIVILEGES ，这个命令执行后会重新载入授权表。如果你不使用该命令就无法使用新创建的用户来连接 MySQL 服务器，除非重启。可以在创建用户时为用户指定权限，例如上述代码中的 select_priv，insert_priv，update_priv 字段，在对应的权限列中，在插入语句中设置为 ‘Y’ 即可，用户权限列表如下：Select_privInsert_privUpdate_privDelete_privCreate_privDrop_privReload_privShutdown_privProcess_privFile_privGrant_privReferences_privIndex_privAlter_priv增删改查操作类似，都是对 user 表进行 INSERT，DELETE，UPDATE，SELECT 这些操作。查看 MySQL 常用信息查看数据库列表1SHOW DATABASES;查看数据表列表1SHOW TABLES;查看数据表列表1SHOW TABLES;查看数据表属性1SHOW COLUMNS FROM 表名;查看数据表索引信息1SHOW INDEX FROM 表名;查看数据库的性能及统计信息1SHOW TABLE STATUS FROM 数据库名;时间数据类型TIMESTAMP 把客户端插入的时间从当前时区转化为 UTC（世界标准时间）进行存储。查询时，将其又转化为客户端当前时区进行返回。而 DATETIME 不做任何改变，基本上是原样输入和输出。所以对于跨时区的业务，TIMESTAMP 更为合适。TIMESTAMP 比 DATETIME 存储时间范围要小得多。5.6 及之前版本只有 TIMESTAMP 支持默认初始化当前时间及自动更新，且一张表中只支持一个字段，到了 5.7 及之后版本 TIMESTAMP 和 DATETIME 都支持且没有数量限制。LIKE 模糊查询不加任何匹配的话就等价于 =。% 通配符表示任何字符出现任意次，可以是 0 次。_ 通配符表示任何字符出现 1 次。12345678SELECT * FROM user WHERE username LIKE 'test%'; # 以 test 字符串开头的，包括 test 本身，这种方式可以走索引SELECT * FROM user WHERE username LIKE '%test'; # 以 test 字符串结尾的，包括 test 本身SELECT * FROM user WHERE username LIKE '%test%'; # 包含 test 字符串的，包括 test 本身SELECT * FROM user WHERE username LIKE 'test_'; # 以 test 字符串开头的，且后面必须跟着一个字符，这种方式可以走索引SELECT * FROM user WHERE username LIKE '_test'; # 以 test 字符串结尾的，且前面必须跟着一个字符SELECT * FROM user WHERE username LIKE '_test_'; # 包含 test 字符串的，且前面和后面必须分别跟着一个字符SELECT * FROM user WHERE username LIKE '%[a-z]%'; # 包含小写字母的SELECT * FROM user WHERE username LIKE '%[!0-9]%'; # 不包含数字的注意空格也会被识别出来，但是不能匹配 NULL。是否区分大小写这个得看 MySQL 的配置，或者使用 BINARY 操作符来进行二进制的匹配。或者使用 UPPER 操作符全部转化成大写字母，然后配合 CONCAT 操作符将多个字符串连起来。12# 中英文混合且忽略英文大小写的模糊匹配SELECT * FROM username WHERE UPPER(username) LIKE BINARY CONCAT('%',UPPER(‘a中文b’)，‘%’);当]]></content>
-      <categories>
-        <category>mysql</category>
-      </categories>
-      <tags>
-        <tag>mysql</tag>
-        <tag>查漏补缺</tag>
       </tags>
   </entry>
 </search>

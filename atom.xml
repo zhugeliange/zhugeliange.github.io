@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="/"/>
-  <updated>2019-03-28T10:39:14.034Z</updated>
+  <updated>2019-03-29T03:32:55.000Z</updated>
   <id>/</id>
   
   <author>
@@ -17,11 +17,347 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>mysql模糊查询</title>
+    <link href="/post/mysql%E6%A8%A1%E7%B3%8A%E6%9F%A5%E8%AF%A2/"/>
+    <id>/post/mysql模糊查询/</id>
+    <published>2019-09-20T02:54:55.000Z</published>
+    <updated>2019-03-29T03:32:55.000Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;html&gt;&lt;head&gt;&lt;/head&gt;&lt;body&gt;&lt;ul&gt;&lt;li&gt;&lt;p&gt;不加任何匹配的话就等价于 &lt;strong&gt;=&lt;/strong&gt;。&lt;/p&gt;&lt;/li&gt;&lt;li&gt;&lt;p&gt;&lt;strong&gt;%&lt;/strong&gt; 通配符表示任何字符出现任意次，可以是
+        
+      
+    
+    </summary>
+    
+      <category term="mysql" scheme="/categories/mysql/"/>
+    
+    
+      <category term="mysql" scheme="/tags/mysql/"/>
+    
+      <category term="like" scheme="/tags/like/"/>
+    
+      <category term="模糊查询" scheme="/tags/%E6%A8%A1%E7%B3%8A%E6%9F%A5%E8%AF%A2/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>mysql的时间日期类型</title>
+    <link href="/post/mysql%E7%9A%84%E6%97%B6%E9%97%B4%E6%97%A5%E6%9C%9F%E7%B1%BB%E5%9E%8B/"/>
+    <id>/post/mysql的时间日期类型/</id>
+    <published>2019-03-29T03:30:13.000Z</published>
+    <updated>2019-03-29T03:30:13.000Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;html&gt;&lt;head&gt;&lt;/head&gt;&lt;body&gt;&lt;ul&gt;&lt;li&gt;&lt;p&gt;&lt;strong&gt;TIMESTAMP&lt;/strong&gt; 把客户端插入的时间从当前时区转化为 &lt;strong&gt;UTC&lt;/strong&gt;（世界标准时间）进行存储。查询时，将其又转化为客户端当前时区进行返回。而
+        
+      
+    
+    </summary>
+    
+      <category term="mysql" scheme="/categories/mysql/"/>
+    
+    
+      <category term="mysql" scheme="/tags/mysql/"/>
+    
+      <category term="时间" scheme="/tags/%E6%97%B6%E9%97%B4/"/>
+    
+      <category term="日期" scheme="/tags/%E6%97%A5%E6%9C%9F/"/>
+    
+      <category term="类型" scheme="/tags/%E7%B1%BB%E5%9E%8B/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>mysql的null值</title>
+    <link href="/post/mysql%E7%9A%84null%E5%80%BC/"/>
+    <id>/post/mysql的null值/</id>
+    <published>2018-10-17T14:01:23.000Z</published>
+    <updated>2019-03-29T03:34:23.000Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;html&gt;&lt;head&gt;&lt;/head&gt;&lt;body&gt;&lt;ul&gt;&lt;li&gt;&lt;p&gt;&lt;strong&gt;IS NULL&lt;/strong&gt; 判断当前值为 &lt;strong&gt;NULL&lt;/strong&gt; 时返回
+        
+      
+    
+    </summary>
+    
+      <category term="mysql" scheme="/categories/mysql/"/>
+    
+    
+      <category term="mysql" scheme="/tags/mysql/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>查看mysql常用信息</title>
+    <link href="/post/%E6%9F%A5%E7%9C%8Bmysql%E5%B8%B8%E7%94%A8%E4%BF%A1%E6%81%AF/"/>
+    <id>/post/查看mysql常用信息/</id>
+    <published>2018-08-19T07:18:44.000Z</published>
+    <updated>2019-03-29T03:28:14.000Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;html&gt;&lt;head&gt;&lt;/head&gt;&lt;body&gt;&lt;h2 id=&quot;查看数据库列表&quot;&gt;&lt;a href=&quot;#查看数据库列表&quot; class=&quot;headerlink&quot; title=&quot;查看数据库列表&quot;&gt;&lt;/a&gt;查看数据库列表&lt;/h2&gt;&lt;figure class=&quot;highlight
+        
+      
+    
+    </summary>
+    
+      <category term="mysql" scheme="/categories/mysql/"/>
+    
+    
+      <category term="mysql" scheme="/tags/mysql/"/>
+    
+      <category term="常用信息" scheme="/tags/%E5%B8%B8%E7%94%A8%E4%BF%A1%E6%81%AF/"/>
+    
+      <category term="查看" scheme="/tags/%E6%9F%A5%E7%9C%8B/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>mysql的备份与还原</title>
+    <link href="/post/mysql%E7%9A%84%E5%A4%87%E4%BB%BD%E4%B8%8E%E8%BF%98%E5%8E%9F/"/>
+    <id>/post/mysql的备份与还原/</id>
+    <published>2018-07-19T13:17:36.000Z</published>
+    <updated>2019-03-29T03:17:56.000Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;html&gt;&lt;head&gt;&lt;/head&gt;&lt;body&gt;&lt;h2 id=&quot;导出指定数据库到文件&quot;&gt;&lt;a href=&quot;#导出指定数据库到文件&quot; class=&quot;headerlink&quot; title=&quot;导出指定数据库到文件&quot;&gt;&lt;/a&gt;导出指定数据库到文件&lt;/h2&gt;&lt;figure
+        
+      
+    
+    </summary>
+    
+      <category term="mysql" scheme="/categories/mysql/"/>
+    
+    
+      <category term="mysql" scheme="/tags/mysql/"/>
+    
+      <category term="备份" scheme="/tags/%E5%A4%87%E4%BB%BD/"/>
+    
+      <category term="还原" scheme="/tags/%E8%BF%98%E5%8E%9F/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>mysql的case-when-then-else-end</title>
+    <link href="/post/mysql%E7%9A%84case-when-then-else-end/"/>
+    <id>/post/mysql的case-when-then-else-end/</id>
+    <published>2018-04-12T12:33:01.000Z</published>
+    <updated>2019-03-29T03:42:01.000Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;html&gt;&lt;head&gt;&lt;/head&gt;&lt;body&gt;&lt;h2 id=&quot;两种基本语法&quot;&gt;&lt;a href=&quot;#两种基本语法&quot; class=&quot;headerlink&quot; title=&quot;两种基本语法&quot;&gt;&lt;/a&gt;两种基本语法&lt;/h2&gt;&lt;ul&gt;&lt;li&gt;简单函数：&lt;/li&gt;&lt;/ul&gt;&lt;figure
+        
+      
+    
+    </summary>
+    
+      <category term="mysql" scheme="/categories/mysql/"/>
+    
+    
+      <category term="mysql" scheme="/tags/mysql/"/>
+    
+      <category term="case" scheme="/tags/case/"/>
+    
+      <category term="when" scheme="/tags/when/"/>
+    
+      <category term="then" scheme="/tags/then/"/>
+    
+      <category term="else" scheme="/tags/else/"/>
+    
+      <category term="end" scheme="/tags/end/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>mysql的执行顺序</title>
+    <link href="/post/mysql%E7%9A%84%E6%89%A7%E8%A1%8C%E9%A1%BA%E5%BA%8F/"/>
+    <id>/post/mysql的执行顺序/</id>
+    <published>2017-09-21T09:29:56.000Z</published>
+    <updated>2019-04-02T09:29:56.000Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;html&gt;&lt;head&gt;&lt;/head&gt;&lt;body&gt;&lt;figure class=&quot;highlight sql&quot;&gt;&lt;table&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span
+        
+      
+    
+    </summary>
+    
+      <category term="mysql" scheme="/categories/mysql/"/>
+    
+    
+      <category term="mysql" scheme="/tags/mysql/"/>
+    
+      <category term="顺序" scheme="/tags/%E9%A1%BA%E5%BA%8F/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>mysql的with-rollup和coalesce函数配合group-by实现分组之后汇总</title>
+    <link href="/post/mysql%E7%9A%84with-rollup%E5%92%8Ccoalesce%E5%87%BD%E6%95%B0%E9%85%8D%E5%90%88group-by%E5%AE%9E%E7%8E%B0%E5%88%86%E7%BB%84%E4%B9%8B%E5%90%8E%E6%B1%87%E6%80%BB/"/>
+    <id>/post/mysql的with-rollup和coalesce函数配合group-by实现分组之后汇总/</id>
+    <published>2017-08-07T09:49:44.000Z</published>
+    <updated>2019-04-02T09:49:44.000Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;html&gt;&lt;head&gt;&lt;/head&gt;&lt;body&gt;&lt;ul&gt;&lt;li&gt;&lt;strong&gt;WITH ROLLUP&lt;/strong&gt;
+        
+      
+    
+    </summary>
+    
+      <category term="mysql" scheme="/categories/mysql/"/>
+    
+    
+      <category term="mysql" scheme="/tags/mysql/"/>
+    
+      <category term="with rollup" scheme="/tags/with-rollup/"/>
+    
+      <category term="coalesce" scheme="/tags/coalesce/"/>
+    
+      <category term="group by" scheme="/tags/group-by/"/>
+    
+      <category term="函数" scheme="/tags/%E5%87%BD%E6%95%B0/"/>
+    
+      <category term="分组" scheme="/tags/%E5%88%86%E7%BB%84/"/>
+    
+      <category term="汇总" scheme="/tags/%E6%B1%87%E6%80%BB/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>mysql的用户设置</title>
+    <link href="/post/mysql%E7%9A%84%E7%94%A8%E6%88%B7%E8%AE%BE%E7%BD%AE/"/>
+    <id>/post/mysql的用户设置/</id>
+    <published>2017-07-22T11:23:42.000Z</published>
+    <updated>2019-03-29T03:24:32.000Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;html&gt;&lt;head&gt;&lt;/head&gt;&lt;body&gt;&lt;h2 id=&quot;添加用户&quot;&gt;&lt;a href=&quot;#添加用户&quot; class=&quot;headerlink&quot; title=&quot;添加用户&quot;&gt;&lt;/a&gt;添加用户&lt;/h2&gt;&lt;figure class=&quot;highlight
+        
+      
+    
+    </summary>
+    
+      <category term="mysql" scheme="/categories/mysql/"/>
+    
+    
+      <category term="mysql" scheme="/tags/mysql/"/>
+    
+      <category term="用户" scheme="/tags/%E7%94%A8%E6%88%B7/"/>
+    
+      <category term="设置" scheme="/tags/%E8%AE%BE%E7%BD%AE/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>mysql的外键</title>
+    <link href="/post/mysql%E7%9A%84%E5%A4%96%E9%94%AE/"/>
+    <id>/post/mysql的外键/</id>
+    <published>2017-07-02T07:30:17.000Z</published>
+    <updated>2019-04-02T07:30:17.000Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;html&gt;&lt;head&gt;&lt;/head&gt;&lt;body&gt;&lt;h2 id=&quot;简介&quot;&gt;&lt;a href=&quot;#简介&quot; class=&quot;headerlink&quot; title=&quot;简介&quot;&gt;&lt;/a&gt;简介&lt;/h2&gt;&lt;ul&gt;&lt;li&gt;&lt;p&gt;&lt;strong&gt;MySQL&lt;/strong&gt;
+        
+      
+    
+    </summary>
+    
+      <category term="mysql" scheme="/categories/mysql/"/>
+    
+    
+      <category term="mysql" scheme="/tags/mysql/"/>
+    
+      <category term="外键" scheme="/tags/%E5%A4%96%E9%94%AE/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>mysql的三范式</title>
+    <link href="/post/mysql%E7%9A%84%E4%B8%89%E8%8C%83%E5%BC%8F/"/>
+    <id>/post/mysql的三范式/</id>
+    <published>2017-06-29T10:21:13.000Z</published>
+    <updated>2019-03-29T03:20:48.000Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;html&gt;&lt;head&gt;&lt;/head&gt;&lt;body&gt;&lt;h2 id=&quot;基本概念&quot;&gt;&lt;a href=&quot;#基本概念&quot; class=&quot;headerlink&quot; title=&quot;基本概念&quot;&gt;&lt;/a&gt;基本概念&lt;/h2&gt;&lt;ul&gt;&lt;li&gt;&lt;p&gt;&lt;strong&gt;第一范式：&lt;/strong&gt; 当关系模式
+        
+      
+    
+    </summary>
+    
+      <category term="mysql" scheme="/categories/mysql/"/>
+    
+    
+      <category term="mysql" scheme="/tags/mysql/"/>
+    
+      <category term="三范式" scheme="/tags/%E4%B8%89%E8%8C%83%E5%BC%8F/"/>
+    
+  </entry>
+  
+  <entry>
     <title>mysql性能调优</title>
     <link href="/post/mysql%E6%80%A7%E8%83%BD%E8%B0%83%E4%BC%98/"/>
     <id>/post/mysql性能调优/</id>
     <published>2017-06-28T05:19:13.000Z</published>
-    <updated>2019-03-28T10:39:14.034Z</updated>
+    <updated>2019-03-29T03:17:56.000Z</updated>
     
     <summary type="html">
     
@@ -47,11 +383,71 @@
   </entry>
   
   <entry>
+    <title>mysql的存储引擎innodb和myisam之间的比较</title>
+    <link href="/post/mysql%E7%9A%84%E5%AD%98%E5%82%A8%E5%BC%95%E6%93%8Einnodb%E5%92%8Cmyisam%E4%B9%8B%E9%97%B4%E7%9A%84%E6%AF%94%E8%BE%83/"/>
+    <id>/post/mysql的存储引擎innodb和myisam之间的比较/</id>
+    <published>2017-06-11T08:27:57.000Z</published>
+    <updated>2019-04-02T08:27:57.000Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;html&gt;&lt;head&gt;&lt;/head&gt;&lt;body&gt;&lt;ul&gt;&lt;li&gt;&lt;p&gt;&lt;strong&gt;MyISAM&lt;/strong&gt; 强调的是性能，其执行数度比 &lt;strong&gt;InnoDB&lt;/strong&gt;
+        
+      
+    
+    </summary>
+    
+      <category term="mysql" scheme="/categories/mysql/"/>
+    
+    
+      <category term="mysql" scheme="/tags/mysql/"/>
+    
+      <category term="存储引擎" scheme="/tags/%E5%AD%98%E5%82%A8%E5%BC%95%E6%93%8E/"/>
+    
+      <category term="innodb" scheme="/tags/innodb/"/>
+    
+      <category term="myisam" scheme="/tags/myisam/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>mysql的临时表</title>
+    <link href="/post/mysql%E7%9A%84%E4%B8%B4%E6%97%B6%E8%A1%A8/"/>
+    <id>/post/mysql的临时表/</id>
+    <published>2017-05-13T12:23:38.000Z</published>
+    <updated>2019-03-29T03:22:48.000Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;html&gt;&lt;head&gt;&lt;/head&gt;&lt;body&gt;&lt;h2 id=&quot;MySQL-默认外部临时表&quot;&gt;&lt;a href=&quot;#MySQL-默认外部临时表&quot; class=&quot;headerlink&quot; title=&quot;MySQL
+        
+      
+    
+    </summary>
+    
+      <category term="mysql" scheme="/categories/mysql/"/>
+    
+    
+      <category term="mysql" scheme="/tags/mysql/"/>
+    
+      <category term="临时表" scheme="/tags/%E4%B8%B4%E6%97%B6%E8%A1%A8/"/>
+    
+  </entry>
+  
+  <entry>
     <title>mysql高可用架构设计</title>
     <link href="/post/mysql%E9%AB%98%E5%8F%AF%E7%94%A8%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/"/>
     <id>/post/mysql高可用架构设计/</id>
     <published>2017-05-03T07:18:59.000Z</published>
-    <updated>2019-03-28T07:25:44.131Z</updated>
+    <updated>2019-03-29T03:17:56.000Z</updated>
     
     <summary type="html">
     
@@ -81,7 +477,7 @@
     <link href="/post/%E9%82%A3%E4%BA%9B%E5%B9%B4%E7%A2%B0%E5%88%B0%E7%9A%84%E7%A5%9E%E7%BA%A7sql/"/>
     <id>/post/那些年碰到的神级sql/</id>
     <published>2017-04-01T07:19:45.000Z</published>
-    <updated>2019-03-28T07:55:33.543Z</updated>
+    <updated>2019-03-29T03:17:56.000Z</updated>
     
     <summary type="html">
     
@@ -101,34 +497,6 @@
       <category term="mysql" scheme="/tags/mysql/"/>
     
       <category term="神级" scheme="/tags/%E7%A5%9E%E7%BA%A7/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>mysql查漏补缺</title>
-    <link href="/post/mysql%E6%9F%A5%E6%BC%8F%E8%A1%A5%E7%BC%BA/"/>
-    <id>/post/mysql查漏补缺/</id>
-    <published>2016-03-28T06:25:06.000Z</published>
-    <updated>2019-03-28T10:59:52.805Z</updated>
-    
-    <summary type="html">
-    
-      
-      
-        
-        
-          &lt;html&gt;&lt;head&gt;&lt;/head&gt;&lt;body&gt;&lt;h2 id=&quot;版本&quot;&gt;&lt;a href=&quot;#版本&quot; class=&quot;headerlink&quot; title=&quot;版本&quot;&gt;&lt;/a&gt;版本&lt;/h2&gt;&lt;ul&gt;&lt;li&gt;&lt;strong&gt;mysql&lt;/strong&gt; 建议
-        
-      
-    
-    </summary>
-    
-      <category term="mysql" scheme="/categories/mysql/"/>
-    
-    
-      <category term="mysql" scheme="/tags/mysql/"/>
-    
-      <category term="查漏补缺" scheme="/tags/%E6%9F%A5%E6%BC%8F%E8%A1%A5%E7%BC%BA/"/>
     
   </entry>
   
