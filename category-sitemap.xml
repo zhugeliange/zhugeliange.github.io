@@ -9,7 +9,14 @@
 
     <url>
         <loc>/categories/mysql/</loc>
-        <lastmod>2019-04-02T09:49:44.000Z</lastmod>
+        <lastmod>2019-04-02T10:19:03.000Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>/categories/markdown/</loc>
+        <lastmod>2019-04-03T05:55:15.000Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
     </url>

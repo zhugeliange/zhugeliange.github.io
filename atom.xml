@@ -201,6 +201,64 @@
   </entry>
   
   <entry>
+    <title>markdown查漏补缺</title>
+    <link href="/post/markdown%E6%9F%A5%E6%BC%8F%E8%A1%A5%E7%BC%BA/"/>
+    <id>/post/markdown查漏补缺/</id>
+    <published>2018-04-03T05:55:15.000Z</published>
+    <updated>2019-04-03T05:55:15.000Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;html&gt;&lt;head&gt;&lt;/head&gt;&lt;body&gt;&lt;h2 id=&quot;基本语法&quot;&gt;&lt;a href=&quot;#基本语法&quot; class=&quot;headerlink&quot; title=&quot;基本语法&quot;&gt;&lt;/a&gt;基本语法&lt;/h2&gt;&lt;h3 id=&quot;删除线&quot;&gt;&lt;a href=&quot;#删除线&quot;
+        
+      
+    
+    </summary>
+    
+      <category term="markdown" scheme="/categories/markdown/"/>
+    
+    
+      <category term="markdown" scheme="/tags/markdown/"/>
+    
+      <category term="查漏补缺" scheme="/tags/%E6%9F%A5%E6%BC%8F%E8%A1%A5%E7%BC%BA/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>mysql的正则表达式regexp</title>
+    <link href="/post/mysql%E7%9A%84%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8Fregexp/"/>
+    <id>/post/mysql的正则表达式regexp/</id>
+    <published>2017-10-22T10:19:03.000Z</published>
+    <updated>2019-04-02T10:19:03.000Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;html&gt;&lt;head&gt;&lt;/head&gt;&lt;body&gt;&lt;table&gt;&lt;thead&gt;&lt;tr&gt;&lt;th style=&quot;text-align:center&quot;&gt;模式&lt;/th&gt;&lt;th
+        
+      
+    
+    </summary>
+    
+      <category term="mysql" scheme="/categories/mysql/"/>
+    
+    
+      <category term="mysql" scheme="/tags/mysql/"/>
+    
+      <category term="regexp" scheme="/tags/regexp/"/>
+    
+      <category term="正则表达式" scheme="/tags/%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F/"/>
+    
+  </entry>
+  
+  <entry>
     <title>mysql的执行顺序</title>
     <link href="/post/mysql%E7%9A%84%E6%89%A7%E8%A1%8C%E9%A1%BA%E5%BA%8F/"/>
     <id>/post/mysql的执行顺序/</id>

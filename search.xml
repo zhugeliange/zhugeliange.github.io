@@ -81,6 +81,31 @@
       </tags>
   </entry>
   <entry>
+    <title><![CDATA[markdown查漏补缺]]></title>
+    <url>%2Fpost%2Fmarkdown%E6%9F%A5%E6%BC%8F%E8%A1%A5%E7%BC%BA%2F</url>
+    <content type="text"><![CDATA[基本语法删除线要加删除线的文字左右分别用两个 ~~ 号包起来1~~这是加删除线的文字~~这是加删除线的文字引用在引用的文字前加 > 即可。引用也可以嵌套，如加两个 >> 三个 >>> 等等，貌似可以无限个，但没神马卵用。123> 引用一个>> 引用两个>>>>>>>>>> 引用好多个引用一个引用两个引用好多个分割线三个或者三个以上的 - 或者 * 都可以。1234-------********高阶语法高阶语法通常依赖当前使用的 markdown 解释器，大部分解释器都支持基础语法，如果小部分不支持高阶语法是没办法使用的。目录将 [TOC] 放到任意位置就会在此处自动生成目录。1[TOC]Latex 数学公式常用数学符号的 LaTeX 表示方法流程图todo列表序列图甘特图技巧换行连续两个以上空格 + 回车。直接写 html 的原生语法。缩进字符不断行的空格或半角全角的空格。可以用 html转义字符 来代替。还可以直接写 html 的原生语法，可以和 markdown 的语法混写的。转义字符如果内容中包含 *，|，]]></content>
+      <categories>
+        <category>markdown</category>
+      </categories>
+      <tags>
+        <tag>markdown</tag>
+        <tag>查漏补缺</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[mysql的正则表达式regexp]]></title>
+    <url>%2Fpost%2Fmysql%E7%9A%84%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8Fregexp%2F</url>
+    <content type="text"><![CDATA[模式描述^匹配输入字符串的开始位置。如果设置了 RegExp 对象的 Multiline 属性，^ 也匹配 \n 或 \r 之后的位置。$匹配输入字符串的结束位置。如果设置了 RegExp 对象的 Multiline 属性，$ 也匹配 \n 或 \r 之前的位置。.匹配除 \n 之外的任何单个字符。要匹配包括 \n 在内的任何字符，请使用象 [.\n] 的模式。[…]字符集合。匹配所包含的任意一个字符。例如，[abc] 可以匹配 plain 中的 a。[^…]负值字符集合。匹配未包含的任意字符。例如， [^abc] 可以匹配 plain 中的 p。p1|p2|p3匹配 p1 或 p2 或 p3。例如，z|food 能匹配 z 或 food。(z|f)ood 则匹配 zood 或 food。*匹配前面的子表达式零次或多次。例如，zo* 能匹配 z 以及 zoo。* 等价于 {0,}。+匹配前面的子表达式一次或多次。例如，zo+ 能匹配 zo 以及 zoo，但不能匹配 z。+ 等价于 {1,}。{n}n 是一个非负整数。匹配确定的 n 次。例如，o{2} 不能匹配 Bob 中的 o，但是能匹配 food 中的两个 o。{n,m}m 和 n 均为非负整数，其中 n]]></content>
+      <categories>
+        <category>mysql</category>
+      </categories>
+      <tags>
+        <tag>mysql</tag>
+        <tag>regexp</tag>
+        <tag>正则表达式</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[mysql的执行顺序]]></title>
     <url>%2Fpost%2Fmysql%E7%9A%84%E6%89%A7%E8%A1%8C%E9%A1%BA%E5%BA%8F%2F</url>
     <content type="text"><![CDATA[12345678910111213SELECT DISTINCT 字段1,字段2 FROM 表1 JOIN 表2 ON 表1.字段3=表2.字段4WHERE 条件1,条件2GROUP BY 字段5HAVING 条件3,条件4ORDER BY 字段6LIMIT 开始位置,限制长度MySQL 解释器的执行顺序为：FROMONJOINWHEREGROUP BYHAVINGSELECTDISTINCTORDER BYLIMIT]]></content>
