@@ -241,13 +241,6 @@
     </url>
 
     <url>
-        <loc>/tags/mysql/</loc>
-        <lastmod>2019-04-02T10:19:03.000Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.2</priority>
-    </url>
-
-    <url>
         <loc>/tags/regexp/</loc>
         <lastmod>2019-04-02T10:19:03.000Z</lastmod>
         <changefreq>weekly</changefreq>
@@ -262,6 +255,13 @@
     </url>
 
     <url>
+        <loc>/tags/%E5%9F%BA%E7%A1%80%E6%8B%BE%E9%81%97/</loc>
+        <lastmod>2019-04-03T05:55:15.000Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
         <loc>/tags/markdown/</loc>
         <lastmod>2019-04-03T05:55:15.000Z</lastmod>
         <changefreq>weekly</changefreq>
@@ -271,6 +271,27 @@
     <url>
         <loc>/tags/%E6%9F%A5%E6%BC%8F%E8%A1%A5%E7%BC%BA/</loc>
         <lastmod>2019-04-03T05:55:15.000Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>/tags/mysql/</loc>
+        <lastmod>2019-04-03T07:27:57.000Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>/tags/%E4%BA%8B%E5%8A%A1/</loc>
+        <lastmod>2019-04-03T07:27:57.000Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>/tags/%E9%BB%98%E8%AE%A4/</loc>
+        <lastmod>2019-04-03T08:07:29.000Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
     </url>
