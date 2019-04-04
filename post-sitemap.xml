@@ -8,6 +8,46 @@
     </url>
 
     <url>
+        <loc>post/mysql%E7%9A%84in%E5%92%8Cexists/</loc>
+        <lastmod>2019-04-04T07:51:04.000Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
+        <loc>post/mysql%E8%BF%90%E7%AE%97%E7%AC%A6/</loc>
+        <lastmod>2019-04-04T03:43:58.000Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
+        <loc>post/oltp%E5%92%8Colap/</loc>
+        <lastmod>2019-04-04T03:40:57.000Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
+        <loc>post/mysql%E5%A4%84%E7%90%86%E9%87%8D%E5%A4%8D%E6%95%B0%E6%8D%AE/</loc>
+        <lastmod>2019-04-04T03:13:41.000Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
+        <loc>post/mysql%E7%9A%84alter%E5%91%BD%E4%BB%A4/</loc>
+        <lastmod>2019-04-04T02:05:49.000Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
         <loc>post/%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F/</loc>
         <lastmod>2019-04-03T08:07:29.000Z</lastmod>
         <changefreq>weekly</changefreq>

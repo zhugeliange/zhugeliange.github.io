@@ -1,44 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title><![CDATA[mysql模糊查询]]></title>
-    <url>%2Fpost%2Fmysql%E6%A8%A1%E7%B3%8A%E6%9F%A5%E8%AF%A2%2F</url>
-    <content type="text"><![CDATA[不加任何匹配的话就等价于 =。% 通配符表示任何字符出现任意次，可以是 0 次。_ 通配符表示任何字符出现 1 次。12345678SELECT * FROM user WHERE username LIKE 'test%'; # 以 test 字符串开头的，包括 test 本身，这种方式可以走索引SELECT * FROM user WHERE username LIKE '%test'; # 以 test 字符串结尾的，包括 test 本身SELECT * FROM user WHERE username LIKE '%test%'; # 包含 test 字符串的，包括 test 本身SELECT * FROM user WHERE username LIKE 'test_'; # 以 test 字符串开头的，且后面必须跟着一个字符，这种方式可以走索引SELECT * FROM user WHERE username LIKE '_test'; # 以 test 字符串结尾的，且前面必须跟着一个字符SELECT * FROM user WHERE username LIKE '_test_'; # 包含 test 字符串的，且前面和后面必须分别跟着一个字符SELECT * FROM user WHERE username LIKE '%[a-z]%'; # 包含小写字母的SELECT * FROM user WHERE username LIKE '%[!0-9]%'; # 不包含数字的注意空格也会被识别出来，但是不能匹配 NULL。是否区分大小写这个得看 MySQL 的配置，或者使用 BINARY 操作符来进行二进制的匹配。或者使用 UPPER 操作符全部转化成大写字母，然后配合 CONCAT 操作符将多个字符串连起来。12# 中英文混合且忽略英文大小写的模糊匹配SELECT * FROM username WHERE UPPER(username) LIKE BINARY CONCAT('%',UPPER(‘a中文b’)，‘%’);]]></content>
-      <categories>
-        <category>mysql</category>
-      </categories>
-      <tags>
-        <tag>mysql</tag>
-        <tag>like</tag>
-        <tag>模糊查询</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title><![CDATA[正则表达式]]></title>
-    <url>%2Fpost%2F%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F%2F</url>
-    <content type="text"><![CDATA[]]></content>
-      <categories>
-        <category>默认</category>
-      </categories>
-      <tags>
-        <tag>默认</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title><![CDATA[mysql的时间日期类型]]></title>
-    <url>%2Fpost%2Fmysql%E7%9A%84%E6%97%B6%E9%97%B4%E6%97%A5%E6%9C%9F%E7%B1%BB%E5%9E%8B%2F</url>
-    <content type="text"><![CDATA[TIMESTAMP 把客户端插入的时间从当前时区转化为 UTC（世界标准时间）进行存储。查询时，将其又转化为客户端当前时区进行返回。而 DATETIME 不做任何改变，基本上是原样输入和输出。所以对于跨时区的业务，TIMESTAMP 更为合适。TIMESTAMP 比 DATETIME 存储时间范围要小得多。5.6 及之前版本只有 TIMESTAMP 支持默认初始化当前时间及自动更新，且一张表中只支持一个字段，到了 5.7 及之后版本 TIMESTAMP 和 DATETIME 都支持且没有数量限制。]]></content>
-      <categories>
-        <category>mysql</category>
-      </categories>
-      <tags>
-        <tag>mysql</tag>
-        <tag>时间</tag>
-        <tag>日期</tag>
-        <tag>类型</tag>
-      </tags>
-  </entry>
-  <entry>
     <title><![CDATA[mysql的null值]]></title>
     <url>%2Fpost%2Fmysql%E7%9A%84null%E5%80%BC%2F</url>
     <content type="text"><![CDATA[IS NULL 判断当前值为 NULL 时返回 true。IS NOT NULL 判断当前值不为 NULL 时返回 true。不能用 = 或者 != 来判断 NULL 值，得用 ，当比较的的两个值为 NULL 时返回 true。NULL 值与任何其它值的比较（即使是 NULL）永远返回 false，即 NULL = NULL 返回 false。IFNULL 函数1IFNULL(expr1,expr2)如果 expr1 不是 NULL，IFNULL() 返回 expr1，否则它返回 expr2。IFNULL() 返回一个数字或字符串值，取决于它被使用的上下文环境。1IFNULL(age,0)如果 age 字段为 NULL 值，则返回 0。IF 函数1IF(expr1,expr2,expr3)如果 expr1 是 TRUE(expr10 且 expr1NULL)，那么 IF() 返回 expr2，否则它返回 expr3。IF() 返回一个数字或字符串值，取决于它被使用的上下文。1IF(1>2,'yes','no') # 返回 noexpr1 作为整数值被计算，它意味着如果你正在测试浮点或字符串值，你应该使用一个比较操作来做。12IF(0.1,'yes','no') # 返回 no，因为 0.1 被强制转化成整数 0IF(0.10,'yes','no') # 返回 yes]]></content>
@@ -76,6 +38,19 @@
       </tags>
   </entry>
   <entry>
+    <title><![CDATA[oltp和olap]]></title>
+    <url>%2Fpost%2Foltp%E5%92%8Colap%2F</url>
+    <content type="text"><![CDATA[OLTP联机事务处理，是传统的关系型数据库的主要应用，主要是基本日常的事务处理，例如银行交易等。OLAP联机分析处理，是数据仓库系统的主要应用，支持复杂的分析操作，侧重决策支持，并且提供直观易懂的查询结果，例如统计年度报表等。对比比较项OLTPOLAP实时性要求高一般数据量一般很大并发要求高低事务性要求高低用户普通用户决策人员和市场功能事务和查询的日常操作数据统计分析决策数据类型当前最新精确的二维数据由一定时间积累下来的多维汇总数据存取量级小，读/写数十条记录很大，读上百万条记录查询需求简单的事务，由短的原子事务组成，需要具有并行和回滚恢复机制复杂的查询，但主要是纯查询操作]]></content>
+      <categories>
+        <category>基础拾遗</category>
+      </categories>
+      <tags>
+        <tag>基础拾遗</tag>
+        <tag>oltp</tag>
+        <tag>olap</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[mysql的case-when-then-else-end]]></title>
     <url>%2Fpost%2Fmysql%E7%9A%84case-when-then-else-end%2F</url>
     <content type="text"><![CDATA[两种基本语法简单函数：1CASE 字段名 WHEN 值1 THEN 结果1 WHEN 值2 THEN 结果2 ELSE 其他结果 END简单函数的条件只支持 字段名 = 值 的情况，且始终是同一个字段，对于多个字段或者 IN，!=，这些条件得用下面的搜索函数。搜索函数1CASE WHEN 条件1 THEN 结果1 WHEN 条件2 THEN 结果2 ELSE 其他结果 END搜索函数可以写判断，并且搜索函数只会返回第一个符合条件的值，其他 CASE 被忽略。]]></content>
@@ -89,6 +64,18 @@
         <tag>then</tag>
         <tag>else</tag>
         <tag>end</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[正则表达式]]></title>
+    <url>%2Fpost%2F%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F%2F</url>
+    <content type="text"><![CDATA[普通字符普通字符包括没有显式指定为元字符的所有可打印和不可打印字符。这包括所有大写和小写字母、所有数字、所有标点符号和一些其他符号。非打印字符非打印字符也可以是正则表达式的组成部分。下表列出了表示非打印字符的转义序列：字符描述\cx匹配由 x 指明的控制字符。例如，\cM 匹配一个 Control-M 或回车符。x 的值必须为 A-Z 或 a-z 之一。否则，将 c 视为一个原义的 c 字符。\f匹配一个换页符。等价于 \x0c 和 \cL。\n匹配一个换行符。等价于 \x0a 和 \cJ。\r匹配一个回车符。等价于 \x0d 和 \cM。\t匹配一个水平制表符。等价于 \x09 和 \cI。\v匹配一个垂直制表符。等价于 \x0b 和 \cK。\s匹配任何空白字符，包括空格，制表符，换页符等等，等价于 [ \f\n\r\t\v]。注意 UNICODE 正则表达式会匹配全角空格符。\S匹配任何非空白字符，等价于 [ \f\n\r\t\v]。特殊字符所谓特殊字符，就是一些有特殊含义的字符，要想得到本来的字符得在前面加一个 \ 来转义。字符描述$匹配输入字符串的结尾位置。如果设置了 RegExp 对象的 Multiline 属性，则 $ 也匹配 \n 或 \r。匹配字符本身需要转义 \$。()标记一个子表达式的开始和结束位置。子表达式可以获取供以后使用。匹配字符本身需要转义 \( 和 \)。*匹配前面的子表达式零次或多次。匹配字符本身需要转义 \*。+匹配前面的子表达式一次或多次。匹配字符本身需要转义 \+。.匹配除换行符 \n 之外的任何单个字符。匹配字符本身需要转义 \. 。[]标记一个中括号表达式的开始。匹配字符本身需要转义 \[ 和 \]。?匹配前面的子表达式零次或一次，或指明一个非贪婪限定符。匹配字符本身需要转义 \?。\将下一个字符标记为特殊字符或原义字符或向后引用或八进制转义符。匹配字符本身需要转义 \。^匹配输入字符串的开始位置，除非在方括号表达式中使用，此时它表示不接受该字符集合。匹配字符本身需要转义 \^。{}标记限定符表达式的开始。匹配字符本身需要转义 \{ 和 \}。|指明多项之间的或者关系。匹配字符本身需要转义 **\**。]]></content>
+      <categories>
+        <category>基础拾遗</category>
+      </categories>
+      <tags>
+        <tag>基础拾遗</tag>
+        <tag>正则表达式</tag>
       </tags>
   </entry>
   <entry>
@@ -154,6 +141,32 @@
       </tags>
   </entry>
   <entry>
+    <title><![CDATA[mysql模糊查询]]></title>
+    <url>%2Fpost%2Fmysql%E6%A8%A1%E7%B3%8A%E6%9F%A5%E8%AF%A2%2F</url>
+    <content type="text"><![CDATA[不加任何匹配的话就等价于 =。% 通配符表示任何字符出现任意次，可以是 0 次。_ 通配符表示任何字符出现 1 次。12345678SELECT * FROM user WHERE username LIKE 'test%'; # 以 test 字符串开头的，包括 test 本身，这种方式可以走索引SELECT * FROM user WHERE username LIKE '%test'; # 以 test 字符串结尾的，包括 test 本身SELECT * FROM user WHERE username LIKE '%test%'; # 包含 test 字符串的，包括 test 本身SELECT * FROM user WHERE username LIKE 'test_'; # 以 test 字符串开头的，且后面必须跟着一个字符，这种方式可以走索引SELECT * FROM user WHERE username LIKE '_test'; # 以 test 字符串结尾的，且前面必须跟着一个字符SELECT * FROM user WHERE username LIKE '_test_'; # 包含 test 字符串的，且前面和后面必须分别跟着一个字符SELECT * FROM user WHERE username LIKE '%[a-z]%'; # 包含小写字母的SELECT * FROM user WHERE username LIKE '%[!0-9]%'; # 不包含数字的注意空格也会被识别出来，但是不能匹配 NULL。是否区分大小写这个得看 MySQL 的配置，或者使用 BINARY 操作符来进行二进制的匹配。或者使用 UPPER 操作符全部转化成大写字母，然后配合 CONCAT 操作符将多个字符串连起来。12# 中英文混合且忽略英文大小写的模糊匹配SELECT * FROM username WHERE UPPER(username) LIKE BINARY CONCAT('%',UPPER(‘a中文b’)，‘%’);]]></content>
+      <categories>
+        <category>mysql</category>
+      </categories>
+      <tags>
+        <tag>mysql</tag>
+        <tag>like</tag>
+        <tag>模糊查询</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[mysql的in和exists]]></title>
+    <url>%2Fpost%2Fmysql%E7%9A%84in%E5%92%8Cexists%2F</url>
+    <content type="text"><![CDATA[EXISTSEXISTS 对外表用 LOOP 逐条循环查询，每次查询都会查看 EXISTS 的条件语句，当 EXISTS 里的条件语句能够返回记录时(无论记录是多少条，只要能返回)，条件就为真，返回当前 LOOP 到的这条记录，反之如果 EXISTS 里的条件语句不能返回记录行，则当前 LOOP 到的这条记录被丢弃，EXISTS 里的语句就像一个 WHERE 条件，当能返回结果时为 TRUE否则为 FALSE。ININ 相当于多个 OR 条件的叠加。但是 IN 的条件只支持一个字段，而 EXISTS 则没有限制。性能比较EXISTS1SELECT * FROM 表1 WHERE EXISTS (SELECT * FROM 表2 WHERE 表2.id = 表1.id); # 查询主要是用到了表2的索引，表1对查询的效率影响不大。IN1234SELECT * FROM 表1 WHERE 表1.id IN (SELECT id FROM 表2);# 假设这里表2的所有id为 1，2，3 则上面语句可以转化成SELECT * FROM 表1 WHERE 表1.id = 1 OR 表1.id = 2 OR 表1.id = 3; # 查询主要是用到了表1的索引，表2对查询的效率影响不大。NOT EXISTS1SELECT * FROM 表1 WHERE NOT EXISTS (SELECT * FROM 表2 WHERE 表2.id = 表1.id); # 查询主要是用到了表2的索引，表1对查询的效率影响不大。NOT IN1234SELECT * FROM 表1 WHERE 表1.id NOT IN (SELECT id FROM 表2);# 假设这里表2的所有id为 1，2，3 则上面语句可以转化成SELECT * FROM 表1 WHERE 表1.id != 1 OR 表1.id != 2 OR 表1.id != 3; # 因为 != 不会走索引，所以效率很差IN 语句是把外表和内表作 HASH 连接，而 EXISTS 语句是对外表作 LOOP 循环，再对内表进行查询。所以得出结论：内外表大小差不多，用 IN 和 EXISTS 都行。内表大用 EXISTS，外表大用 IN。无论什么情况 NOT EXISTS 都比 NOT IN 效率高，因为前者走索引后者没有。]]></content>
+      <categories>
+        <category>mysql</category>
+      </categories>
+      <tags>
+        <tag>mysql</tag>
+        <tag>in</tag>
+        <tag>exists</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[mysql的with-rollup和coalesce函数配合group-by实现分组之后汇总]]></title>
     <url>%2Fpost%2Fmysql%E7%9A%84with-rollup%E5%92%8Ccoalesce%E5%87%BD%E6%95%B0%E9%85%8D%E5%90%88group-by%E5%AE%9E%E7%8E%B0%E5%88%86%E7%BB%84%E4%B9%8B%E5%90%8E%E6%B1%87%E6%80%BB%2F</url>
     <content type="text"><![CDATA[WITH ROLLUP 可以实现在分组统计数据基础上再进行相同的统计（SUM，AVG，COUNT 等）。1SELECT name, SUM(singin) as singin_count FROM employee_tbl GROUP BY name WITH ROLLUP;其中记录 NULL 表示所有人的登录次数。可以使用 COALESCE 来设置一个可以取代 NULL 的名称，语法如下：1select COALESCE(a,b,c);如果 a==NULL，则选择 b。如果 b==NULL，则选择 c。如果 a!=NULL，则选择 a。如果 a，b，c 都为 NULL ，则返回为 NULL（没意义）。所以可以结合起来改造上面语句，用 “总数” 来替换 NULL：1SELECT COALESCE(name, '总数'), SUM(singin) as singin_count FROM employee_tbl GROUP BY name WITH ROLLUP;]]></content>
@@ -184,6 +197,18 @@
       </tags>
   </entry>
   <entry>
+    <title><![CDATA[mysql运算符]]></title>
+    <url>%2Fpost%2Fmysql%E8%BF%90%E7%AE%97%E7%AC%A6%2F</url>
+    <content type="text"><![CDATA[算术运算符运算符描述+加法-减法*乘法/除法（返回精确到小数点后四位浮点数）DIV除法（返回整数，舍去小数部分）%，MOD取余12345678910111213141516171819# 加法SELECT 1 + 2; # 3# 减法SELECT 1 - 2; # -1# 乘法SELECT 2 * 3; # 6# 除法（返回精确到小数点后四位浮点数）SELECT 3 / 2; # 1.5000# 除法（返回整数，舍去小数部分）SELECT 3 DIV 2; # 1# 取余SELECT 3 % 2; # 1SELECT 3 MOD 2; # 1SELECT MOD(3, 2); # 1比较运算符运算符描述=等于严格比较两个NULL值是否相等，两个操作码均为 NULL 时，其所得值为 1，而当一个操作码为 NULL 时，其所得值为 0，!=不等于>大于=大于等于 1; # 1# 按位左移SELECT 3 < ，>=，]]></content>
+      <categories>
+        <category>mysql</category>
+      </categories>
+      <tags>
+        <tag>mysql</tag>
+        <tag>运算符</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[mysql的外键]]></title>
     <url>%2Fpost%2Fmysql%E7%9A%84%E5%A4%96%E9%94%AE%2F</url>
     <content type="text"><![CDATA[简介MySQL 通过外键约束来保证表与表之间的数据的完整性和准确性。一个表中的 FOREIGN KEY 指向另一个表中的 UNIQUE KEY(唯一约束的键，不一定是 PRIMARY KEY)。FOREIGN KEY 约束用于预防破坏表之间连接的行为。FOREIGN KEY 约束也能防止非法数据插入外键列，因为它必须是它指向的那个表中的值之一。使用条件两个表必须是 InnoDB 表，MyISAM 表暂时不支持外键。主表的字段必须是唯一键，不一定要是主键，只要具有唯一性约束就行了。关联的两个字段必须是 InnoDB 下的相似类型，即 INT 和 TINYINT 可以，INT 和 CHAR 就不行。外键的字段必须建立索引，新版本已经可以自动创建索引了，不用手动创建了。避免使用复合键，也就是说从表能够同一时候引用多个主表的字段作为一个外键，但是一般不推荐这样的做法。创建123456789CREATE TABLE 表1( 字段1 int NOT NULL, 字段2 int, CONSTRAINT symbol PRIMARY KEY (字段1), FOREIGN KEY (字段2) REFERENCES 表2(字段1) ON 触发事件1 具体操作1 ON 触发事件2 具体操作2)表1的字段2是外键，与表2的字段1（唯一键，一般是主键）相关联。symbol 可以为选填，手动指定的话必须保证唯一性，不写就由 MySQL 自动生成，建议自动生成触发事件有如下值：DELETE 删除时UPDATE 更新时具体操作有如下值：RESTRICT 限制外表中的外键改动CASCADE 跟随外键改动SET NULL 设空值SET DEFAULT 设默认值NO ACTION 无动作，默认触发事件和具体操作为可选项，但必须成对出现，且可有多个。修改12345ALTER TABLE 表1ADD CONSTRAINT symbol FOREIGN KEY (字段2)REFERENCES 表2(字段1)ON 触发事件1 具体操作1ON 触发事件2 具体操作2删除12ALTER TABLE 表1DROP FOREIGN KEY 字段2]]></content>
@@ -210,7 +235,7 @@
   <entry>
     <title><![CDATA[mysql性能调优]]></title>
     <url>%2Fpost%2Fmysql%E6%80%A7%E8%83%BD%E8%B0%83%E4%BC%98%2F</url>
-    <content type="text"><![CDATA[适当地使用索引，索引可以优化查询效率，但是过多的话影响修改效率。使用复合索引，优先级从左到右。坚决不要涉及到 NULL 值，因为 NULL 值不会走索引。MySQL 的一条查询只能使用一个索引，例如：当 WHERE 条件使用索引时，后面 ORDER BY 的索引将不会使用。尽量避免模糊查询，因为 %VALUE% 不会走索引，但是 VALUE% 可以用索引。实在需要 %VALUE 这种形式可以在使用符合索引构成覆盖索引，性能至少会比全表扫描好。或者根据需求拆成多次查询。不要使用 非操作， 诸如 NOT， , != 这些操作是不会走索引的。不要在 WHERE子句 中的 = 左边进行任何操作，诸如 WHERE YEAR(birthday) < 2017 这样的操作是不会走索引的。多个条件时慎用 OR ， 当一个条件有索引而另一个没有时，就不会走索引了，可以分别查询然后用 UNION 将结果集连接起来。用 EXISTS 代替 IN，前者效率比较高。字段类型越简单查询效率越高，例如：主键是 INT 类型就比 CHAR 类型快很多。NVARCHAR 相比 VARCHAR 可以存储 UNICODE 字符，但是也因此存储容量少了一半，同理 NCHAR 对比 CHAR。NVARCHAR/VARCHAR 相比 NCHAR/CHAR 字符是不固定长度的，因此从占用空间上来考虑会比较高效，但是正因为 NCHAR/CHAR 是固定长度的所以索引效率会比较高，这个得根据实际情况来考虑平衡。绝对不要用 * ，除非真的要查全部数据，否则每条 SQL 都应该只查询需要的数据，不应该有任何的多余字段。避免频繁创建和删除 临时表，以减少系统表资源的消耗。临时表 并不是不可使用，适当地使用它们可以使某些例程更有效，例如：当需要重复引用大型表或常用表中的某个数据集时。但是，对于一次性事件， 最好使用导出表。在新建 临时表 时，如果一次性插入数据量很大，那么可以使用 SELECT INTO 代替 CREATE TABLE，避免造成大量 LOG ，以提高速度；如果数据量不大，为了缓和系统表的资源，应先 CREATE TABLE，然后 INSERT。如果使用到了 临时表 ，在存储过程的最后务必将所有的 临时表 显式删除，先 TRUNCATE TABLE ，然后 DROP TABLE ，这样可以避免系统表的较长时间锁定。尽量避免大事务操作，提高系统并发能力。拆分大的 DELETE 或 INSERT 语句为小的语句，批量提交 SQL 语句。因为删除和更新操作会锁表，当数据量过大耗时太久时，很可能会造成服务的崩溃。用 JOIN 代替 子查询。用 UNION 代替 临时表。使用 外键 来保证数据的同步。MySQL 的解析器按照从左往右的顺序处理 FROM 子句中的表名， 写在最前面的表将被最先处理，在 FROM 子句中包含多个表的情况下,你必须选择记录条数最少的表放在最前面：如果多个表是完全无关系的话，将记录和列名最少的表放在最前面然后依次类推，如果表之间是有关系的话，将引用最多的表放在最前面然后依次类推。对于 WHERE 子句，也是按照从左往右的顺序处理，所以过滤掉大量数据的条件应该放在最左边，表之间的连接应该放在最右边。用 WHERE 子句替换 HAVING 子句，因为 WHERE 先执行，HAVING 后执行。使用 >= 代替 > ，例如：WHERE a > 10 改成 WHERE a >= 10.0000001。删除全表时，用 TRUNCATE 比 DELETE 效率更好。DELETE 会一行一行的删除数据，而 TRUNCATE 则会按照原有的表结构重新创建一张新表。但是 TRUNCATE 不会生成 MySQL 的日志，且无法恢复数据。尽量多使用 COMMIT，只要有可能就对程序中每个 DELETE，INSERT，UPDATE 使用 COMMIT，即应该将事务尽量拆分，这样不会因大量占用资源导致锁，系统会因为 COMMIT 所释放的资源而大大提高效率。有条件的使用 UNION ALL 代替 UNION 提高效率。这两者的唯一区别就是后者会去除重复的值。当连接多个表时对表使用别名，子查询也是如此，因为这样可以加快数据库引擎查找表的时间。最高效的删除重复记录方法例子： DELETE FROM table1 a WHERE a.field > (SELECT MIN(b.field) FROM table2 b WHERE b.id = a.id);尽量少用 联合查询， 子查询， 触发器， 事务 这些相对复杂的操作，数据库设计时尽量做到能用最简单的语句来完成查询。]]></content>
+    <content type="text"><![CDATA[适当地使用索引，索引可以优化查询效率，但是过多的话影响修改效率。使用复合索引，优先级从左到右。坚决不要涉及到 NULL 值，因为 NULL 值不会走索引。MySQL 的一条查询只能使用一个索引，例如：当 WHERE 条件使用索引时，后面 ORDER BY 的索引将不会使用。尽量避免模糊查询，因为 %VALUE% 不会走索引，但是 VALUE% 可以用索引。实在需要 %VALUE 这种形式可以在使用符合索引构成覆盖索引，性能至少会比全表扫描好。或者根据需求拆成多次查询。不要使用 非操作， 诸如 NOT， , != 这些操作是不会走索引的。不要在 WHERE子句 中的 = 左边进行任何操作，诸如 WHERE YEAR(birthday) < 2017 这样的操作是不会走索引的。多个条件时慎用 OR ， 当一个条件有索引而另一个没有时，就不会走索引了，可以分别查询然后用 UNION 将结果集连接起来。用 EXISTS 代替 IN，前者效率比较高。字段类型越简单查询效率越高，例如：主键是 INT 类型就比 CHAR 类型快很多。NVARCHAR 相比 VARCHAR 可以存储 UNICODE 字符，但是也因此存储容量少了一半，同理 NCHAR 对比 CHAR。NVARCHAR/VARCHAR 相比 NCHAR/CHAR 字符是不固定长度的，因此从占用空间上来考虑会比较高效，但是正因为 NCHAR/CHAR 是固定长度的所以索引效率会比较高，这个得根据实际情况来考虑平衡。绝对不要用 * ，除非真的要查全部数据，否则每条 SQL 都应该只查询需要的数据，不应该有任何的多余字段。避免频繁创建和删除 临时表，以减少系统表资源的消耗。临时表 并不是不可使用，适当地使用它们可以使某些例程更有效，例如：当需要重复引用大型表或常用表中的某个数据集时。但是，对于一次性事件， 最好使用导出表。在新建 临时表 时，如果一次性插入数据量很大，那么可以使用 SELECT INTO 代替 CREATE TABLE，避免造成大量 LOG ，以提高速度；如果数据量不大，为了缓和系统表的资源，应先 CREATE TABLE，然后 INSERT。如果使用到了 临时表 ，在存储过程的最后务必将所有的 临时表 显式删除，先 TRUNCATE TABLE ，然后 DROP TABLE ，这样可以避免系统表的较长时间锁定。尽量避免大事务操作，提高系统并发能力。拆分大的 DELETE 或 INSERT 语句为小的语句，批量提交 SQL 语句。因为删除和更新操作会锁表，当数据量过大耗时太久时，很可能会造成服务的崩溃。用 JOIN 代替 子查询。用 UNION 代替 临时表。使用 外键 来保证数据的同步。MySQL 的解析器按照从左往右的顺序处理 FROM 子句中的表名， 写在最前面的表将被最先处理，在 FROM 子句中包含多个表的情况下,你必须选择记录条数最少的表放在最前面：如果多个表是完全无关系的话，将记录和列名最少的表放在最前面然后依次类推，如果表之间是有关系的话，将引用最多的表放在最前面然后依次类推。对于 WHERE 子句，也是按照从左往右的顺序处理，所以过滤掉大量数据的条件应该放在最左边，表之间的连接应该放在最右边。用 WHERE 子句替换 HAVING 子句，因为 WHERE 先执行，HAVING 后执行。使用 >= 代替 > ，例如：WHERE a > 10 改成 WHERE a >= 10.0000001。删除全表时，用 TRUNCATE 比 DELETE 效率更好。DELETE 会一行一行的删除数据，而 TRUNCATE 则会按照原有的表结构重新创建一张新表。但是 TRUNCATE 不会生成 MySQL 的日志，且无法恢复数据。尽量多使用 COMMIT，只要有可能就对程序中每个 DELETE，INSERT，UPDATE 使用 COMMIT，即应该将事务尽量拆分，这样不会因大量占用资源导致锁，系统会因为 COMMIT 所释放的资源而大大提高效率。有条件的使用 UNION ALL 代替 UNION 提高效率。这两者的唯一区别就是后者会去除重复的值。当连接多个表时对表使用别名，子查询也是如此，因为这样可以加快数据库引擎查找表的时间。尽量少用 联合查询， 子查询， 触发器， 事务 这些相对复杂的操作，数据库设计时尽量做到能用最简单的语句来完成查询。]]></content>
       <categories>
         <category>mysql</category>
       </categories>
@@ -260,6 +285,31 @@
       </tags>
   </entry>
   <entry>
+    <title><![CDATA[mysql处理重复数据]]></title>
+    <url>%2Fpost%2Fmysql%E5%A4%84%E7%90%86%E9%87%8D%E5%A4%8D%E6%95%B0%E6%8D%AE%2F</url>
+    <content type="text"><![CDATA[防止表中出现重复数据可以在 MySQL 数据表中设置指定的字段为 PRIMARY KEY（主键） 或者 UNIQUE（唯一） 索引来保证数据的唯一性。如果想设置表中多个字段数据不能重复，可以设置联合主键或者联合唯一索引模式来设置数据的唯一性，此时那个键的默认值就不能为 NULL，得设置为 NOT NULL。1234567CREATE TABLE 表名( 字段1 CHAR(20) NOT NULL, 字段2 CHAR(20) NOT NULL, 字段3 CHAR(10), PRIMARY KEY/UNIQUE (字段1, 字段2));如果设置了唯一索引，那么在插入重复数据时，SQL 语句将无法执行成功,并抛出错。此时可以使用 INSERT IGNORE INTO，与 INSERT INTO 的区别就是 INSERT IGNORE INTO 会忽略数据库中已经存在的数据，如果数据库没有数据就插入新的数据，如果有数据的话就跳过这条数据。这样就可以保留数据库中已经存在数据，达到在间隙中插入数据的目的。1INSERT IGNORE INTO 表名 (字段1, 字段2) VALUES(值1, 值2);如果在设置了记录的唯一性之后，INSERT IGNORE INTO 插入重复数据时将不返回错误，只以警告形式返回。 而使用 REPLACE INTO 时，如果重复的记录有主键或者唯一索引，则先删除掉该条记录再插入新记录。统计重复数据1SELECT COUNT(*) as 别名, 字段1, 字段2 FROM 表名 GROUP BY 字段1, 字段2 HAVING 别名 > 1;确定哪些列包含的值可能会重复。用 COUNT(*) 查询这些列的数量。再用 GROUP BY 对这些列进行分组。配合 HAVING 过滤出重复数大于 1 的列。过滤重复数据12345# 使用 DISTINCT 来去重SELECT DISTINCT 字段1,字段2 FROM 表名;# 使用 GROUP BY 来去重SELECT 字段1,字段2 FROM 表名 GROUP BY (字段1,字段2);删除重复数据12345678910# 新建一张不重复的表来替换原有的重复表CREATE TABLE 表2 SELECT 字段1,字段2,字段3 FROM 表1 GROUP BY (字段1,字段2,字段3);DROP TABLE 表1;ALTER TABLE 表2 RENAME TO 表1;# 添加主键或者唯一索引来删除重复记录ALTER IGNORE TABLE 表名 ADD PRIMARY KEY/UNIQUE (字段1,字段2,字段3);# 使用子查询删除大于最小值的数据DELETE FROM 表1 别名1 WHERE 别名1.字段1 > (SELECT MIN(别名2.字段1) FROM 表2 别名2 WHERE 别名2.主键字段 = 别名1.主键字段);]]></content>
+      <categories>
+        <category>mysql</category>
+      </categories>
+      <tags>
+        <tag>mysql</tag>
+        <tag>重复数据</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[mysql的alter命令]]></title>
+    <url>%2Fpost%2Fmysql%E7%9A%84alter%E5%91%BD%E4%BB%A4%2F</url>
+    <content type="text"><![CDATA[删除表字段1ALTER TABLE 表名 DROP 字段名;如果数据表中只剩余一个字段则无法使用 DROP 来删除字段。添加表字段1ALTER TABLE 表名 ADD 字段名 INT(11);默认情况下，ADD 命令下字段会自动添加到数据表字段的末尾。如果需要指定新增字段的位置，可以使用 MySQL 提供的关键字 FIRST (指定位置为第一列)， AFTER 字段名（指定位置为某个字段之后）。12345# 添加在第一列ALTER TABLE 表名 ADD 字段名 INT(11) FIRST;# 在字段1后面添加字段2ALTER TABLE 表名 ADD 字段2 INT(11) AFTER 字段1;如果想重置数据表字段的位置就需要先使用 DROP 删除字段然后使用 ADD 来添加字段并设置位置。修改表字段MODIFY 和 CHANGE 都可以用来修改表字段。12345# 将指定字段改为 CHAR(10) 类型 且指定注释ALTER TABLE 表名 MODIFY 字段名 CHAR(10) COMMENT '注释';# 将字段1名称改为字段2，且指定为 CHAR(10) 类型ALTER TABLE 表名 CHANGE 字段1 字段2 BIGINT;当添加或修改字段时，可以指定是否包含值或者是否设置默认值。如果不设置默认值，MySQL 会自动设置该字段默认为 NULL。1ALTER TABLE 表名 MODIFY 字段名 BIGINT NOT NULL AUTO_INCREMENT DEFAULT 100;修改字段默认值1ALTER TABLE 表名 ALTER 字段名 SET DEFAULT 1000;也可以使用 DROP 来删除字段的默认值。1ALTER TABLE 表名 ALTER 字段名 DROP DEFAULT;修改数据表存储引擎12# 修改指定表的存储引擎为 MYISAMALTER TABLE 表名 ENGINE = MYISAM;修改表名12# 将表1的名称修改为表2ALTER TABLE 表1 RENAME TO 表2;修改索引1234567891011121314# 添加主键索引ALTER TABLE 表名 ADD PRIMARY KEY (字段名)# 添加唯一索引ALTER TABLE 表名 ADD UNIQUE (字段名)# 添加普通索引ALTER TABLE 表名 ADD INDEX (字段名)# 添加全文索引ALTER TABLE 表名 ADD FULLTEXT (字段名)# 添加联合索引ALTER TABLE 表名 ADD INDEX 联合索引名 (字段1,字段2,字段3)]]></content>
+      <categories>
+        <category>mysql</category>
+      </categories>
+      <tags>
+        <tag>mysql</tag>
+        <tag>alter</tag>
+        <tag>修改</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[那些年碰到的神级sql]]></title>
     <url>%2Fpost%2F%E9%82%A3%E4%BA%9B%E5%B9%B4%E7%A2%B0%E5%88%B0%E7%9A%84%E7%A5%9E%E7%BA%A7sql%2F</url>
     <content type="text"><![CDATA[计算两日期之间的工作日12345678910SELECT 5 * ( DATEDIFF('2016-10-31', '2016-10-01') DIV 7 ) + MID( '0123444401233334012222340111123400001234000123440', 7 * WEEKDAY('2016-10-01') + WEEKDAY('2016-10-31') + 1, 1 ) + 1 WorkingDaysFROM DUAL;最高效的删除重复记录的方法1DELETE FROM table1 a WHERE a.field > (SELECT MIN(b.field) FROM table2 b WHERE b.id = a.id);]]></content>
@@ -269,6 +319,20 @@
       <tags>
         <tag>mysql</tag>
         <tag>神级</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[mysql的时间日期类型]]></title>
+    <url>%2Fpost%2Fmysql%E7%9A%84%E6%97%B6%E9%97%B4%E6%97%A5%E6%9C%9F%E7%B1%BB%E5%9E%8B%2F</url>
+    <content type="text"><![CDATA[TIMESTAMP 把客户端插入的时间从当前时区转化为 UTC（世界标准时间）进行存储。查询时，将其又转化为客户端当前时区进行返回。而 DATETIME 不做任何改变，基本上是原样输入和输出。所以对于跨时区的业务，TIMESTAMP 更为合适。TIMESTAMP 比 DATETIME 存储时间范围要小得多。5.6 及之前版本只有 TIMESTAMP 支持默认初始化当前时间及自动更新，且一张表中只支持一个字段，到了 5.7 及之后版本 TIMESTAMP 和 DATETIME 都支持且没有数量限制。]]></content>
+      <categories>
+        <category>mysql</category>
+      </categories>
+      <tags>
+        <tag>mysql</tag>
+        <tag>时间</tag>
+        <tag>日期</tag>
+        <tag>类型</tag>
       </tags>
   </entry>
 </search>
