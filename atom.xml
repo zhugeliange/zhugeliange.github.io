@@ -29,7 +29,7 @@
       
         
         
-          &lt;html&gt;&lt;head&gt;&lt;/head&gt;&lt;body&gt;&lt;ul&gt;&lt;li&gt;&lt;p&gt;jsx里自定义的组件必须以大写字母开头，原生组件以小写字母开头，且可以使用属性语法，例如：&lt;code&gt;&lt;menu.item&gt;&lt;/menu.item&gt;&lt;/code&gt;&lt;/p&gt;&lt;/li&gt;&lt;li&gt;&lt;p&gt;只存最原始的状
+          &lt;html&gt;&lt;head&gt;&lt;/head&gt;&lt;body&gt;&lt;ul&gt;&lt;li&gt;&lt;p&gt;jsx里自定义的组件必须以大写字母开头，原生组件以小写字母开头，且可以使用属性语法，例如：\&lt;menu.item&gt;&lt;/menu.item&gt;&lt;/p&gt;&lt;/li&gt;&lt;li&gt;&lt;p&gt;只存最原始的状态，凡是需要计算得到的值
         
       
     
