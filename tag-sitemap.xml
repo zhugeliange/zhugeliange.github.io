@@ -374,6 +374,13 @@
     </url>
 
     <url>
+        <loc>/tags/create-react-app/</loc>
+        <lastmod>2020-03-19T04:20:04.000Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
         <loc>/tags/javascript/</loc>
         <lastmod>2020-04-21T02:24:15.000Z</lastmod>
         <changefreq>weekly</changefreq>
@@ -411,6 +418,20 @@
     <url>
         <loc>/tags/react/</loc>
         <lastmod>2021-03-13T05:18:12.000Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>/tags/%E5%9B%BE%E5%BA%8A/</loc>
+        <lastmod>2021-03-16T03:21:14.000Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>/tags/%E7%99%BD%E5%AB%96/</loc>
+        <lastmod>2021-03-16T03:21:14.000Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
     </url>

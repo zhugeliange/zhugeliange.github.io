@@ -35,7 +35,7 @@
     
     </summary>
     
-      <category term="react" scheme="/categories/react/"/>
+      <category term="javascript" scheme="/categories/javascript/"/>
     
     
       <category term="知识点" scheme="/tags/%E7%9F%A5%E8%AF%86%E7%82%B9/"/>
@@ -65,7 +65,7 @@
     
     </summary>
     
-      <category term="typescript" scheme="/categories/typescript/"/>
+      <category term="javascript" scheme="/categories/javascript/"/>
     
     
       <category term="知识点" scheme="/tags/%E7%9F%A5%E8%AF%86%E7%82%B9/"/>
@@ -73,6 +73,34 @@
       <category term="前端" scheme="/tags/%E5%89%8D%E7%AB%AF/"/>
     
       <category term="typescript" scheme="/tags/typescript/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>目前最好的白嫖图床方案</title>
+    <link href="/post/%E7%9B%AE%E5%89%8D%E6%9C%80%E5%A5%BD%E7%9A%84%E7%99%BD%E5%AB%96%E5%9B%BE%E5%BA%8A%E6%96%B9%E6%A1%88/"/>
+    <id>/post/目前最好的白嫖图床方案/</id>
+    <published>2020-12-19T04:50:46.000Z</published>
+    <updated>2021-03-16T03:21:14.000Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;html&gt;&lt;head&gt;&lt;/head&gt;&lt;body&gt;&lt;p&gt;废话不多说直接给结论：&lt;/p&gt;&lt;ol&gt;&lt;li&gt;方案一：GitHub+PicGo+jsDelivr&lt;/li&gt;&lt;/ol&gt;&lt;ul&gt;&lt;li&gt;GitHub作为图片存储仓库&lt;/li&gt;&lt;li&gt;PicGo做图片上传工具，新版PicGo支持T
+        
+      
+    
+    </summary>
+    
+      <category term="工具" scheme="/categories/%E5%B7%A5%E5%85%B7/"/>
+    
+    
+      <category term="图床" scheme="/tags/%E5%9B%BE%E5%BA%8A/"/>
+    
+      <category term="白嫖" scheme="/tags/%E7%99%BD%E5%AB%96/"/>
     
   </entry>
   
@@ -105,6 +133,38 @@
       <category term="前端" scheme="/tags/%E5%89%8D%E7%AB%AF/"/>
     
       <category term="es6" scheme="/tags/es6/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>create-react-app知识点</title>
+    <link href="/post/create-%20react-app%E7%9F%A5%E8%AF%86%E7%82%B9/"/>
+    <id>/post/create- react-app知识点/</id>
+    <published>2020-02-09T04:13:43.000Z</published>
+    <updated>2020-03-19T04:20:04.000Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;html&gt;&lt;head&gt;&lt;/head&gt;&lt;body&gt;&lt;ul&gt;&lt;li&gt;&lt;p&gt;内置webpack或babel等工具，可以使用eject命令来自定义webpack等配置，但是一旦使用就无法回复默认配置。目前网上有很多第三方工具可以用来实现。&lt;/p&gt;&lt;/li&gt;&lt;li&gt;&lt;p&gt;webpack只
+        
+      
+    
+    </summary>
+    
+      <category term="javascript" scheme="/categories/javascript/"/>
+    
+    
+      <category term="javascript" scheme="/tags/javascript/"/>
+    
+      <category term="知识点" scheme="/tags/%E7%9F%A5%E8%AF%86%E7%82%B9/"/>
+    
+      <category term="前端" scheme="/tags/%E5%89%8D%E7%AB%AF/"/>
+    
+      <category term="create-react-app" scheme="/tags/create-react-app/"/>
     
   </entry>
   
@@ -557,64 +617,6 @@
       <category term="分组" scheme="/tags/%E5%88%86%E7%BB%84/"/>
     
       <category term="汇总" scheme="/tags/%E6%B1%87%E6%80%BB/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>mysql的用户设置</title>
-    <link href="/post/mysql%E7%9A%84%E7%94%A8%E6%88%B7%E8%AE%BE%E7%BD%AE/"/>
-    <id>/post/mysql的用户设置/</id>
-    <published>2017-07-22T11:23:42.000Z</published>
-    <updated>2019-03-29T03:24:32.000Z</updated>
-    
-    <summary type="html">
-    
-      
-      
-        
-        
-          &lt;html&gt;&lt;head&gt;&lt;/head&gt;&lt;body&gt;&lt;h2 id=&quot;添加用户&quot;&gt;&lt;a href=&quot;#添加用户&quot; class=&quot;headerlink&quot; title=&quot;添加用户&quot;&gt;&lt;/a&gt;添加用户&lt;/h2&gt;&lt;figure class=&quot;highlight
-        
-      
-    
-    </summary>
-    
-      <category term="mysql" scheme="/categories/mysql/"/>
-    
-    
-      <category term="mysql" scheme="/tags/mysql/"/>
-    
-      <category term="用户" scheme="/tags/%E7%94%A8%E6%88%B7/"/>
-    
-      <category term="设置" scheme="/tags/%E8%AE%BE%E7%BD%AE/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>mysql运算符</title>
-    <link href="/post/mysql%E8%BF%90%E7%AE%97%E7%AC%A6/"/>
-    <id>/post/mysql运算符/</id>
-    <published>2017-07-07T03:43:58.000Z</published>
-    <updated>2019-04-04T03:43:58.000Z</updated>
-    
-    <summary type="html">
-    
-      
-      
-        
-        
-          &lt;html&gt;&lt;head&gt;&lt;/head&gt;&lt;body&gt;&lt;h2 id=&quot;算术运算符&quot;&gt;&lt;a href=&quot;#算术运算符&quot; class=&quot;headerlink&quot; title=&quot;算术运算符&quot;&gt;&lt;/a&gt;算术运算符&lt;/h2&gt;&lt;table&gt;&lt;thead&gt;&lt;tr&gt;&lt;th
-        
-      
-    
-    </summary>
-    
-      <category term="mysql" scheme="/categories/mysql/"/>
-    
-    
-      <category term="mysql" scheme="/tags/mysql/"/>
-    
-      <category term="运算符" scheme="/tags/%E8%BF%90%E7%AE%97%E7%AC%A6/"/>
     
   </entry>
   

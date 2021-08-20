@@ -8,6 +8,14 @@
     </url>
 
     <url>
+        <loc>post/%E7%9B%AE%E5%89%8D%E6%9C%80%E5%A5%BD%E7%9A%84%E7%99%BD%E5%AB%96%E5%9B%BE%E5%BA%8A%E6%96%B9%E6%A1%88/</loc>
+        <lastmod>2021-03-16T03:21:14.000Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
         <loc>post/react%E7%9F%A5%E8%AF%86%E7%82%B9/</loc>
         <lastmod>2021-03-13T05:18:12.000Z</lastmod>
         <changefreq>weekly</changefreq>
@@ -26,6 +34,14 @@
     <url>
         <loc>post/es6%E7%9F%A5%E8%AF%86%E7%82%B9/</loc>
         <lastmod>2020-04-21T02:24:15.000Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
+        <loc>post/create-%20react-app%E7%9F%A5%E8%AF%86%E7%82%B9/</loc>
+        <lastmod>2020-03-19T04:20:04.000Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
 
