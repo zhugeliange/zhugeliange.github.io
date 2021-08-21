@@ -8,6 +8,38 @@
     </url>
 
     <url>
+        <loc>post/redux-toolkit%E7%9F%A5%E8%AF%86%E7%82%B9%20/</loc>
+        <lastmod>2021-05-24T02:24:15.000Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
+        <loc>post/ant-desgin%E7%9F%A5%E8%AF%86%E7%82%B9/</loc>
+        <lastmod>2021-05-11T02:24:15.000Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
+        <loc>post/%E5%89%8D%E7%AB%AF%E9%A1%B9%E7%9B%AE%E5%AE%9E%E7%8E%B0%E8%B7%A8%E5%9F%9F%E7%9A%84%E5%87%A0%E7%A7%8D%E6%96%B9%E5%BC%8F%20/</loc>
+        <lastmod>2021-04-23T02:24:15.000Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
+        <loc>post/react-router%E7%9F%A5%E8%AF%86%E7%82%B9/</loc>
+        <lastmod>2021-04-21T02:24:15.000Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
         <loc>post/%E7%9B%AE%E5%89%8D%E6%9C%80%E5%A5%BD%E7%9A%84%E7%99%BD%E5%AB%96%E5%9B%BE%E5%BA%8A%E6%96%B9%E6%A1%88/</loc>
         <lastmod>2021-03-16T03:21:14.000Z</lastmod>
         <changefreq>weekly</changefreq>

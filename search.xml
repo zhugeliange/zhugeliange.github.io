@@ -1,15 +1,65 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[redux-toolkit知识点]]></title>
+    <url>%2Fpost%2Fredux-toolkit%E7%9F%A5%E8%AF%86%E7%82%B9%20%2F</url>
+    <content type="text"><![CDATA[首先理解redux所谓 Redux，就是将动作(action) 变换成 state 转换函数(reducer)，然后放到一个统一的地方(store)来 setState 而已。特性有3个：单向性：单向数据流其实并不是redux的特性，而是react本身的思想。这个下面有例子会说明。唯一性：指的是应用的数据都会集中存储在一个地方，这个数据Store就像一个池子，任何组件都可以通过固定的管道来传输或者获取这个池子里面的数据时间旅行：这个“时间旅行”另外的意思是可预测（predictable），即容易理解的代码。在redux里，任何一个数据都有状态。一个用户操作或者程序需要去修改数据，都必须触发Action，这时在redux看来，其实数据是从一个状态，变化成另一个状态。这么一来，数据就变得可预测，可以知道数据的前置状态(prev state)和后置状态(next state)分别是什么，如果在这里加上单元测试，也是极其容易的一件事情。这意味着你必须遵循一定的规则才可以让你的程序走通。所以实现一个功能通常的得相应的创建三个文件：Action，Reducer，Store，同时也是Redux最重要的3个概念。当然有了redux-toolkit之后这些都可以简化了，这个后面说。Action：一言蔽之就是指的用户的一个行为，例如，click，hover，input等。并通过Dispatch将这个行为通知给Store。Reducer：Store内部有很多个Reducer，用来接收Action，并将Store的某些State做相应的更新，同时出发View的更新。Store：作为一个总的容器来管理以上发生的行为及相关的数据。开始使用redux-toolkitredux的毛病就是配置太过繁琐，有大量的冗余，且对异步请求支持不是很好。redux-toolkit实际上就是一些redux相关的工具集：configureStore(): 包装 createStore 以提供简化的配置选项和良好的默认预设。它可以自动组合你的切片 reducers，添加您提供的任何 Redux 中间件，默认情况下包含 redux-thunk ，并允许使用 Redux DevTools 扩展。createReducer(): 为 case reducer 函数提供 action 类型的查找表，而不是编写switch语句。此外，它会自动使用immer库来让您使用普通的可变代码编写更简单的 immutable 更新，例如 state.todos [3] .completed = true 。createAction(): 为给定的 action type string 生成一个 action creator 函数。函数本身定义了 toString()，因此它可以用来代替 type 常量。createSlice(): 接受一个 reducer 函数的对象、分片名称和初始状态值，并且自动生成具有相应 action creators 和 action 类型的分片reducer。createAsyncThunk: 接受一个 action type string 和一个返回 promise 的函数，并生成一个发起基于该 promise 的pending/fulfilled/rejected action 类型的 thunk。createEntityAdapter: 生成一组可重用的 reducers 和 selectors，以管理存储中的规范化数据createSelector 组件 来自 Reselect 库，为了易用再导出。除此之外，新版redux-toolkit还提供了RTK-query用来专门处理异步请求。比fetch，axios，react query方案都更好，具体好在哪里，请自行谷歌～按我个人经验，分享一个使用redux-toolkit的最佳实践：在入口文件app.tsx引入Provider组件并放在最外层，加一个store属性，值可以单独写一个store.ts配置文件来引入。在store.ts配置文件里面用configureStore方法做全局状态的唯一容器，然后export出去。创建一个rootReducer.ts文件，然后里面用combineReducers方法组合所有的reducer，然后export出去交给store.ts来管理。然后就是根据项目的特性依次创建相应的Slice切片，如果是本地状态，就用createSlice方法集成state，reducer。如果是异步的请求，可以用createAsyncThunk也可以RTK-query来处理，个人推荐后者。如果是react16之后的版本使用hook方式的话还可以将useSelect方法和useDispatch做个简单的封装，以供全局使用。]]></content>
+      <categories>
+        <category>前端</category>
+      </categories>
+      <tags>
+        <tag>react</tag>
+        <tag>redux</tag>
+        <tag>redux-toolkit</tag>
+        <tag>RTK-query</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[ant-design知识点]]></title>
+    <url>%2Fpost%2Fant-desgin%E7%9F%A5%E8%AF%86%E7%82%B9%2F</url>
+    <content type="text"><![CDATA[坑～如果在ant-desgin-pro项目里面引入ant-desgin组件报错的话，可以把src/.umi文件夹下的内容删掉再重新start就好了。这个坑据官方说法是因为热更新的一个bug。]]></content>
+      <categories>
+        <category>前端</category>
+      </categories>
+      <tags>
+        <tag>知识点</tag>
+        <tag>框架</tag>
+        <tag>ant-design</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[前端项目实现跨域的几种方式]]></title>
+    <url>%2Fpost%2F%E5%89%8D%E7%AB%AF%E9%A1%B9%E7%9B%AE%E5%AE%9E%E7%8E%B0%E8%B7%A8%E5%9F%9F%E7%9A%84%E5%87%A0%E7%A7%8D%E6%96%B9%E5%BC%8F%20%2F</url>
+    <content type="text"><![CDATA[啥叫跨域请自行谷歌～jsonp原理大概就是，虽然图片这些静态资源不能跨域，但是js可以啊，于是就在目标页面回调本地页面的方法,并带入参数，这就实现了最简单的跨域。例如：jquery的ajax方法里就支持jsonp。1234567891011121314 $.ajax({ url: "http://localhost:8080/api/jsonp", dataType: "jsonp", // 选择jsonp类型 type: "get", data: { id: 1 }, jsonp: "cb", success: function (data) { console.log(data); } });直接在package-json文件里配置proxy上面jsonp方式太老了，对于现代化的诸如react/vue这一类支持node,webpack的框架，可以直接在package-json文件里配置proxy的值，这个值就是你要跨域的目标地址。例如：12345{ ... "proxy": "http://localhost:8000", ...}通过http-proxy-middlware库上面的package-json方式虽然很简单，但是不支持多个跨域，而且部署到生产环境也不稳定。还可以用npm装个http-proxy-middlware库，这是个专门用来代理url请求的中间件，很多框架实际上也都是基于这个库的（例如：蚂蚁的umi配置里的proxy选项）。示例：1234567import * as express from 'express';import { createProxyMiddleware, Filter, Options, RequestHandler } from 'http-proxy-middleware';const app = express();app.use('/api', createProxyMiddleware({ target: 'http://www.example.org', changeOrigin: true }));app.listen(3000);利用nginx的反向代理nginx是啥？请自行谷歌～如果搞过php应该对这个很熟，例如本人。方案就是在您想的配置文件里面，配一个反向代理，将前端访问api的地址指向真正的后端api地址，例如：1234location /api/ # 一般以这种形式做api的标记，也可以自定义其他的{ proxy_pass http://api.xxx.com/; // 这个就是真实的后端目标api地址。}这几种方案怎么选型，按照我的经验来看，如果是jquery这种老项目，就用它封装好的jsonp方法就好了。如果是react这种新式的框架，本地开发直接在package-json里面配个proxy就行了，简单粗暴，线上生产环境如果后端是用的node技术栈（例如：express）可以用http-proxy-middlware，这是标准适配。其他的都可以选用最后一种nginx方式，这种配置也很简单，而且几乎没有任何限制，唯一要求的就是对nginx稍微有点了解吧。]]></content>
+      <categories>
+        <category>前端</category>
+      </categories>
+      <tags>
+        <tag>跨域</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[react-router知识点]]></title>
+    <url>%2Fpost%2Freact-router%E7%9F%A5%E8%AF%86%E7%82%B9%2F</url>
+    <content type="text"><![CDATA[坑～如果要用react-router的方法，那么必须在\组件内部（一般会放在入口app.tsx文件里）。否则根本不生效，除非把history对象从顶层通过props的方式传到要使用的组件，如果层级太多可以考虑用context方式。]]></content>
+      <categories>
+        <category>前端</category>
+      </categories>
+      <tags>
+        <tag>知识点</tag>
+        <tag>react</tag>
+        <tag>react-router</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[react知识点]]></title>
     <url>%2Fpost%2Freact%E7%9F%A5%E8%AF%86%E7%82%B9%2F</url>
     <content type="text"><![CDATA[jsx里自定义的组件必须以大写字母开头，原生组件以小写字母开头，且可以使用属性语法，例如：只存最原始的状态，凡是需要计算得到的值都不建议单独存储，而是通过计算得到。组件尽量无状态，所有的数据通过props获取。react router分为三种形式：普通url模式，hash模式（多个#，用于兼容旧版本浏览器），内存模式（类似于存储在state中，url中不显示）。react router常用api：：普通链接，但是不会触发浏览器的刷新。：类似于Link，但是多了个选中状态。：满足条件时提示用户是否离开当前页面。：页面重定向跳转，例如登录判断。：最基本的路由，根据路径匹配显示相应的页面或组件。：多个Route的匹配规则都满足时，默认会都显示，如果只想显示第一个，可以用Switch将多个Route包起来。next.js适合重度依赖ssr的首页性能优先项目，其他情况下create react app都可以满足日常需求。webpack是先编译打包，然后再启动服务器，而vite是先启动服务器，然后按需加载编译资源。开发构建vite优先，因为性能更好，生产构建webpack优先，因为功能更加齐全。redux原理：用户更改view触发一个action，dispatch接收这个action交给相应的reducer，reducer更新相应的store，从而触发ui的更新。因为render最外层只能有一个标签，所以如果有多个标签时，可以用标签包起来。标签只有key可选属性，适合遍历时指定。也可以用的形式，但是没有key属性。React.lazy函数用来动态import组件，即用到的时候才加载，配合Suspense可以实现，等待加载未完成时显示相应的loading效果。错误边界组件，可以捕获并打印发生在其子组件树任何位置的JavaScript错误，并且会渲染出备用UI。适合用来处理React组件内部崩溃引发的界面白屏等错误（正常的请求报错或者页面事件抛出异常等错误不算）。当多个不同层级的组件之间需要共享状态时，依次逐层通过props来传递state会使得代码太过冗余。可以使用context，比如说当前认证的用户、主题或首选语言等。不过context会造成一定性能的损耗，替代方案可以将整个子组件直接传入props来传递state。当处理一些原生组件或者第三方组件时，需要直接操作dom，可以使用ref来直接访问原生dom。组件是将props转换为ui，而高阶组件是将组件转换为另一个组件，即高阶组件的props参数是组件。Portals可以将子节点渲染到父节点之外，并且保持和普通子结点相对于父节点一致的行为。适合model弹框之类的场景。React组件生命周期：挂载时：constructor -> render -> React更新dom和refs -> componentDidMount更新时：constructor -> render(New props()/setState()/forceUpdate()) -> React更新dom和refs -> componentDidUpdate卸载时：componentWillUnmount]]></content>
       <categories>
-        <category>javascript</category>
+        <category>前端</category>
       </categories>
       <tags>
         <tag>知识点</tag>
-        <tag>前端</tag>
         <tag>react</tag>
       </tags>
   </entry>
@@ -18,7 +68,7 @@
     <url>%2Fpost%2FtypeScript%E7%9F%A5%E8%AF%86%E7%82%B9%2F</url>
     <content type="text"><![CDATA[数组array类型只能为一种。1234// 这三种声明数组的方式等价let a : number[] = [1,2];let b : Array = [1,2];let c = [1,2]; // 隐式声明元组tuple类型可以有多种，固定长度固定类型，声明时需要显式指定类型，不然就只是联合类型。12let a = [1,'2']; // 这种隐式声明并不是元组tuple，而是联合类型(number | string)[]，隐式声明默认取最小能包含变量的类型范围let b : any[] = [1,'2']; // 这个是元组tuple，因为可以包含任意类型的元素直接对元组类型的变量进行初始化或者赋值的时候，需要提供所有元组类型中指定的项，且元素与声明的类型一一对应。123let a : [number,string];a = [1,2]; // 元素类型应该和声明的一一对应a = [1,'b']; // 正确元组虽然固定长度，但是也可以越界添加元素，不过添加的元素类型为声明时的联合类型。12345let a : [number,string];a = [1,'b'];a.push('c');a.push(2);a.push(true); // 错误，因为声明时只有number和string类型联合类型union既可以指定多个类型也可以指定多个确定的值，这也就是字面量类型literal。12let a : number | string; // 联合类型，值可以为数字或者字符串let b : 1 | '2' | true | [1,2]; // 值只能为1，'2'，true，[1,2]枚举类型enum的值默认为索引数字，后面依次+1，也可以手动指定值，类型为数字或者字符串，如果是被赋值为字符串，则其后面的元素必须再次手动赋值，直到为数字为止其内部是一组类似于数组的键值对，如果值为数字类型还会默认添加一组键值对互换的值，所以可以按照数组的方式来访问。且元素为只读属性，不可以再另外赋值。可以包含计算元素，但是其后面不能使用值默认的自动推断，必须手动复赋值。123456789101112131415161718192021222324252627enum a { // 声明时前面不用加let red, // 值为0 green, // 值为1 blue // 值为2}// 完整值为 { '0': 'red', '1': 'green', '2': 'blue', red: 0, green: 1, blue: 2 }，所以a.red或者a['red']为0，a[0]或者a['0']为redenum b { red, // 值为0 green = 2, // 值为2 blue // 值为3}// 完整值为 { '0': 'red', '2': 'green', '3': 'blue', red: 0, green: 2, blue: 3 }，所以b.green或者b['green']为2，b[2]或者b['2']为greenenum c { red, // 值为0 green = 'hehe', // 值为hehe blue = 6 // 必须再次手动赋值}// 完整值为 { '0': 'red', '6': 'blue', red: 0, green: 'hehe', blue: 6 }，所以c.green或者c['green']为hehe，c[6]或者c['6']为blueenum d { red, green = 'green'.length, blue = 2 // 这里必须手动赋值，因为不确定上一个元素的值}常数枚举使用const enum定义，与普通枚举的区别是，它会在编译阶段被删除，在编译生成的js中直接使用元素的值，并且不能包含计算成员。12345678910const enum Directions { Up, Down, Left, Right}let directions = [Directions.Up, Directions.Down, Directions.Left, Directions.Right];// 编译结果是var directions = [0 /* Up */, 1 /* Down */, 2 /* Left */, 3 /* Right */];外部枚举使用declare enum定义，与普通枚举的区别是，它只会用于编译时的检查，编译生成的js文件中会被删除，所以常用在声明文件里面用来做类型检查。unknown类型是any类型的安全版本，因为需要更多的类型断言，unknown类型是所有类型的顶层类型，但是还保留了类型检查，而any类型既是所有类型的顶层类型同时也放弃了类型检查，原则上优先使用unknown类型。void类型表示不存在，例如函数没有返回值，而undefined类型则表示没有值，例如变量声明了但是没有赋值。never类型表示函数永远不会执行完，例如抛出异常或者死循环。类型断言type assertions，表示手动指定变量的类型。强制转换指的是改变类型，而类型断言则指的是指定某些个大类型之中的小类型，比如any中的number。1234567891011121314let a : any; a = 1;let b = (a)++; // 值为2，将any类型断言为number类型，但是这种尖括号方式在react中可能会引起歧义，所以改用下面的方式let c = (a as number)++; // 值为3let a : any; a = 1;let b = (a) + '1'; // 值为11let c = (a as number | string) + '1'; // 值为11let a : any; a = '1';let b = (a).length; // 值为1let c = (a as string).length; // 值为1函数的可选参数或者默认参数都要放在末尾。0x开头表示二进制，0b开头表示八进制。可以使用null和undefined来定义这两个原始数据类型。12let u: undefined = undefined;let n: null = null;undefined和null是所有类型的子类型，可以赋值给其他类型的变量。而void类型的变量不可以，且只能赋值为undefined，虽然这样并没有意义。12345678// 这样不会报错let a: number = undefined;// 这样也不会报错let a: undefined;let b: number = a;// void类型的变量不可以let a: void;let b: number = a;类型别名用来给一个类型起个新名字，常用于联合类型。123456789101112131415161718type a = string;type b = () => string;type c = a | b;function getName(d: c): a { if (typeof d === 'string') { return d; } else { return d(); }}let haha = (e : string) : string => { return e;}getName('hehe'); // 输出hehegetName(haha('haha')); // 输出haha修饰符和readonly还可以使用在构造函数参数中，等同于类中定义该属性同时给该属性赋值，使代码更简洁。1234567891011class A { public constructor(public a: string) { }}// 等同于class A { public a: string; constructor(a) { this.a = a; }}readonly只允许出现在属性声明或索引签名或构造函数中，如果和其他访问修饰符同时存在的话，需要写在其后面。1234567891011class A { readonly a: string; constructor(a) { this.a = a; }}class B { constructor(public readonly b) { }}]]></content>
       <categories>
-        <category>javascript</category>
+        <category>前端</category>
       </categories>
       <tags>
         <tag>知识点</tag>
@@ -43,7 +93,7 @@
     <url>%2Fpost%2Fes6%E7%9F%A5%E8%AF%86%E7%82%B9%2F</url>
     <content type="text"><![CDATA[const实际上保证的，并不是变量的值不得改动，而是变量指向的那个内存地址所保存的数据不得改动。对于简单类型的数据（数值、字符串、布尔值），值就保存在变量指向的那个内存地址，因此等同于常量。但对于复合类型的数据（主要是对象和数组），变量指向的内存地址，保存的只是一个指向实际数据的指针，const只能保证这个指针是固定的（即总是指向另一个固定的地址），至于它指向的数据结构是不是可变的，就完全不能控制了。因此，将一个对象声明为常量必须非常小心。123const a = {};a.prop = 1; // 为a添加一个属性，可以成功foo = {}; // 将a指向另一个对象，就会报错如果解构赋值的默认值是一个表达式，那么这个表达式是惰性求值的，即只有在用到的时候，才会求值。12345function b() { console.log('b');}let [a = b()] = [1]; // 因为a能取到值1，所以函数b根本不会执行。解构赋值的默认值可以引用解构赋值的其他变量，但该变量必须已经声明。123let [a = 1, b = a] = []; // a=1; b=1let [a = 1, b = a] = [1, 2]; // a=1; b=2let [a = b, b = 1] = []; // 报错，因为b还没有声明就被赋值给了a数组和对象都可以解构赋值，不过对象的解构赋值不是按照顺序一一对应，而是按照key来对应的。Number.isFinite()用来检查一个数值是否为有限的（finite），即不是Infinity。如果参数类型不是数值，律返回false。123456Number.isFinite(15); // trueNumber.isFinite(NaN); // falseNumber.isFinite(Infinity); // falseNumber.isFinite(-Infinity); // falseNumber.isFinite('foo'); // falseNumber.isFinite(true); // falseNumber.isNaN()用来检查一个值是否为NaN。如果参数类型不是NaN，一律返回false。1234567Number.isNaN(NaN) // trueNumber.isNaN(9/NaN) // trueNumber.isNaN('true' / 0) // trueNumber.isNaN('true' / 'true') // trueNumber.isNaN(15) // falseNumber.isNaN('15') // falseNumber.isNaN(true) // false函数的递归可能会造成内存溢出，影响性能，可以用尾调用来优化，即最后一步调用。Array.from方法用于将类似数组的对象（array-like object）和可遍历（iterable）的对象（包括 ES6 新增的数据结构 Set 和 Map），转为真正的数组。Array.of()方法用于将一组值，转换为数组。这个方法的主要目的，是弥补数组构造函数Array()的不足。因为参数个数的不同，会导致Array()的行为有差异。123456789Array() // []Array(3) // [, , ,] 参数只有一个正整数时，实际上是指定数组的长度Array(3, 11, 8) // [3, 11, 8]// Array.of()基本上可以用来替代Array()或new Array()，并且不存在由于参数不同而导致的重载Array.of() // []Array.of(undefined) // [undefined]Array.of(1) // [1]Array.of(1, 2) // [1, 2]数组实例的find方法，用于找出第一个符合条件的数组成员。它的参数是一个回调函数，所有数组成员依次执行该回调函数，直到找出第一个返回值为true的成员，然后返回该成员。如果没有符合条件的成员，则返回undefined。find方法的回调函数可以接受三个参数，依次为当前的值、当前的位置和原数组。支持NaN的判断。123[1, 5, 10, 15].find(function(value, index, arr) { return value > 9;}) // 10数组实例的findIndex方法的用法与find方法非常类似，返回第一个符合条件的数组成员的位置，如果所有成员都不符合条件，则返回-1。findIndex方法的回调函数可以接受三个参数，依次为当前的值、当前的位置和原数组。支持NaN的判断。123[1, 5, 10, 15].findIndex(function(value, index, arr) { return value > 9;}) // 2keys()是对键名的遍历、values()是对键值的遍历，entries()是对键值对的遍历。includes方法返回一个布尔值，表示某个数组是否包含给定的值，与字符串的includes方法类似。一共两个参数，第一个参数表示目标值，第二个参数表示搜索的起始位置，默认为0。如果第二个参数为负数，则表示倒数的位置，如果这时它大于数组长度，则会重置为从0开始。支持NaN的判断，可以用来替换indexOf。类似的有Map结构的has方法，是用来查找键名的。Set结构的has方法，是用来查找值的。12[1, 2, 3].includes(3, 3); // false[1, 2, 3].includes(3, -1); // trueflat()方法会将数组‘拉平’为一维数组，且 不改变原数组。默认只‘拉平’一层，要想多层可以传参数指定，参数为Infinity表示不管原数组多少层，全部变为一维数组。允许在大括号里面，直接写入变量和函数，作为对象的属性和方法，除了属性简写，方法也可以简写。12345678910111213141516171819202122232425262728const c = {a: b}; // 等同于 const a = 'b';const c = {a};function f(x, y) { return {x, y};}// 等同于function f(x, y) { return {x: x, y: y};}f(1, 2) // Object {x: 1, y: 2}const o = { method() { return "Hello!"; }};// 等同于const o = { method: function() { return "Hello!"; }};fromEntries()方法是entries()方法的逆操作，用于将一个键值对数组转为对象。常用来配合URLSearchParams对象，将查询字符串转为对象。1Object.fromEntries(new URLSearchParams('foo=bar&baz=qux')); // { foo: "bar", baz: "qux" }assign()方法用于对象的合并，将源对象（source）的所有可枚举属性，复制到目标对象（target）。对于数组也会当作对象来处理，所以属性肯定会重复。如果属性名相同则后面的替换前面的。set结构，元素不能重复，内部严格比较，例如1和‘1’不相等，用new Set()来生成。12345// 去除数组中的重复元素[...new Set([1,2,1])] // [1,2]// 去除字符串的重复字符[...new Set('ababbc')].join('') // ‘abc’set结构有size属性表示元素个数，add方法添加元素（重复的元素会自动忽略），delete方法删除元素，has方法查找元素是否存在，clear方法清除所有元素。12345a = new Set([1,2]);a.add(3); // [1,2,3]a.delete(2); // [1,3]a.has(1); // truea.clear();set结构的遍历方法：keys方法遍历所有的键名，values方法遍历所有的值，entries方法遍历所有的键值对，forEach使用回调函数遍历每个成员。set结构的键名就是键值，所以keys方法和values方法等价。map结构使用new Map()来生成，传统的object对象结构的键名只能是字符串，而map结构的键名可以是任意类型，所以键值对的hash类型更推荐用map。结构有size属性表示元素个数，set方法添加元素（键名重复则会替换），get方法根据键名获取值（键名找不到则返回undefined），has方法查找值（参数为值不是键名）是否存在，delete方法根据键名删除元素，clear方法清除所有元素。12345678910a = new Map([ ['a','b'], ['c',2], [1,'d'],]);a.set(2,'e'); // Map { 'a' => 'b', 'c' => 2, 1 => 'd', 2 => 'e' }a.get(2); // 'e'a.has(2); // truea.delete(2); // Map { 'a' => 'b', 'c' => 2, 1 => 'd' }a.clear(); // Map {}map结构的遍历方法：keys方法遍历所有的键名，values方法遍历所有的值，entries方法遍历所有的键值对，forEach使用回调函数遍历每个成员。map结构与其他结构的互相转换：1234567891011121314151617181920212223242526272829a = new Map([ ['a','b'], ['c',2], [1,'d'],]);// map转换为数组，使用扩展运算符或者Array.from()方法let b = [...a]; // [ [ 'a', 'b' ], [ 'c', 2 ], [ 1, 'd' ] ]let c = Array.from(a); // [ [ 'a', 'b' ], [ 'c', 2 ], [ 1, 'd' ] ]// 数组转换为map，直接当成参数传入new Map()方法即可let d = new Map(c); // Map { 'a' => 'b', 'c' => 2, 1 => 'd' }// map转换为对象，如果map的所有键都是字符串，则可以无损地转为对象。如果有非字符串的键名，那么这个键名会被转成字符串，再作为对象的键名。let e = new Object();d.forEach((v,k)=>{ e[k] = v;});// 对象转换为map，通过Object.entries()方法let f = new Map(Object.entries(e)); // Map { '1' => 'd', 'a' => 'b', 'c' => 2 }// map转换为json，分为两种：如果map的键名全部都是字符串则可以转换为json对象（即先用JSON.stringify()方法转换成对象再转换成json），否则转换为json数组（即先用JSON.stringify()方法转换成数组再转换成json）。let g = JSON.stringify(e); // {"1":"d","a":"b","c":2}let h = JSON.stringify(b); // [["a","b"],["c",2],[1,"d"]]// json转换为map，分为两种：如果是键名全部都是字符串的json对象可以先用JSON.parse()方法转换成对象再用Object.entries()方法遍历，最后用new Map()方法生成map；否则键名不为字符串，或者多层数组或对象嵌套的json数组可以先用JSON.parse()方法转换成数组，再用new map()方法生成。let i = new Map(Object.entries(JSON.parse(g))); // Map { '1' => 'd', 'a' => 'b', 'c' => 2 }let j = new Map(JSON.parse(h)); // Map { 'a' => 'b', 'c' => 2, 1 => 'd' }Promise是异步编程的一种解决方案，用new Promise()方法来生成。Promise对象的状态不受外界影响。Promise对象代表一个异步操作，有三种状态：pending（进行中）、fulfilled（已成功）和rejected（已失败）。只有异步操作的结果，可以决定当前是哪一种状态，任何其他操作都无法改变这个状态。Promise对象一旦状态改变，就不会再变，任何时候都可以得到这个结果。Promise对象的状态改变，只有两种可能：从pending变为fulfilled和从pending变为rejected。只要这两种情况发生，状态就凝固了，不会再变了，会一直保持这个结果，这时就称为 resolved（已定型）。如果改变已经发生了，你再对Promise对象添加回调函数，也会立即得到这个结果。这与事件（Event）完全不同，事件的特点是，如果你错过了它，再去监听，是得不到结果的。Promise也有一些缺点。首先，无法取消Promise，一旦新建它就会立即执行，无法中途取消。其次，如果不设置回调函数，Promise内部抛出的错误，不会反应到外部。第三，当处于pending状态时，无法得知目前进展到哪一个阶段（刚刚开始还是即将完成）。Promise对象有then(方法表示状态改变时的回调函数。有两个可选参数参数，第一个参数为状态成功时的回调函数，第二个参数为状态失败时的回调函数。Promise对象也有catch()方法和finally()方法来表示捕获异常和最终执行。Generator函数是分段执行的，每次手动调用next()方法执行时，碰到函数内部的yield定义的状态就会停止，等到下次执行时再从上次停止的地方接着执行，是一种异步函数。Generator函数与两个特征：一是，function关键字与函数名之间有一个星号；二是，函数体内部使用yield表达式，定义不同的内部状态。async和await是Generator函数的最佳实践，async函数返回一个Promise对象，可以使用then方法添加回调函数。当函数执行的时候，一旦遇到await就会先返回，等到异步操作完成，再接着执行函数体内后面的语句。在Class的内部可以使用get和set关键字，对某个属性设置存值函数和取值函数，并拦截该属性的存取行为。单行定义的对象，最后一个成员不以逗号结尾。多行定义的对象，最后一个成员以逗号结尾。只有模拟现实世界的实体对象时，才使用Object。如果只是需要key: value的数据结构，优先使用map结构。]]></content>
       <categories>
-        <category>javascript</category>
+        <category>前端</category>
       </categories>
       <tags>
         <tag>javascript</tag>
@@ -55,15 +105,14 @@
   <entry>
     <title><![CDATA[create-react-app知识点]]></title>
     <url>%2Fpost%2Fcreate-%20react-app%E7%9F%A5%E8%AF%86%E7%82%B9%2F</url>
-    <content type="text"><![CDATA[内置webpack或babel等工具，可以使用eject命令来自定义webpack等配置，但是一旦使用就无法回复默认配置。目前网上有很多第三方工具可以用来实现。webpack只会处理src目录下的文件，public目录下的文件将会直接复制到打包后的目录。用create-react-app创建typescript版本的ant-design模版：yarn create react-app antd-demo-ts --template typescript。数组array类型只能为一种。1234// 这三种声明数组的方式等价let a : number[] = [1,2];let b : Array = [1,2];let c = [1,2]; // 隐式声明]]></content>
+    <content type="text"><![CDATA[内置webpack或babel等工具，可以使用eject命令来自定义webpack等配置，但是一旦使用就无法回复默认配置。目前网上有很多第三方工具可以用来实现。webpack只会处理src目录下的文件，public目录下的文件将会直接复制到打包后的目录。用create-react-app创建typescript版本的ant-design模版：yarn create react-app antd-demo-ts --template typescript。]]></content>
       <categories>
-        <category>javascript</category>
+        <category>前端</category>
       </categories>
       <tags>
-        <tag>javascript</tag>
         <tag>知识点</tag>
-        <tag>前端</tag>
         <tag>create-react-app</tag>
+        <tag>react</tag>
       </tags>
   </entry>
   <entry>
